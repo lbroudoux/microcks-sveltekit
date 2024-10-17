@@ -16,6 +16,13 @@
 
 import type { User } from "@/models/user.model";
 
+const DEFAULT_CONFIG: any = {
+  mode: 'dev',
+  auth: {
+    type: 'keycloakjs'
+  }
+};
+
 const ANONYMOUS_AUTH_TYPE = 'anonymous';
 
 export class ConfigService {
@@ -28,7 +35,23 @@ export class ConfigService {
    * The Singleton's constructor should always be private to prevent direct
    * construction calls with the `new` operator.
    */
-  private constructor() { }
+  private constructor() {
+    const w: any = window;
+    if (w.MicrocksConfig) {
+      this.config = w.MicrocksConfig;
+      console.info('[ConfigService] Found app config.');
+    } else {
+      console.info('[ConfigService] App config not found!');
+      this.config = DEFAULT_CONFIG;
+
+      // Check Keycloak realm configuration.
+      const keycloak = w.keycloak;
+      if (!keycloak || !keycloak.realm) {
+        console.info('[ConfigService] No Keycloak realm found. Switching to anonymous auth type.');
+        this.config.auth.type = ANONYMOUS_AUTH_TYPE;
+      }
+    }
+  }
  
   /**
    * The static getter that controls access to the singleton instance.
@@ -96,5 +119,14 @@ export class ConfigService {
       return featureConfig[property];
     }
     return null;
+  }
+
+  public async loadConfiguredFeatures(): Promise<any>  {
+    console.info('[ConfigService] Completing config with additional features...');
+    const response = await fetch('/api/features/config', { method: 'GET' });
+
+    this.config.features = await response.json();
+    console.info('[ConfigService] Got config: ' + JSON.stringify(this.config.features));
+    return response;
   }
 }

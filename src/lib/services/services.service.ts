@@ -23,7 +23,7 @@ export async function getServices(page: number = 1, pageSize: number = 20): Prom
   //console.log("Service Keycloak: " + JSON.stringify(keycloak));
   console.log("Service Authenticated user: " + JSON.stringify(getAuthenticatedUser()));
 
-  const options = `page=${page}&pageSize=${pageSize}`;
+  const options = `page=${page - 1}&pageSize=${pageSize}`;
   const response = await fetch('/api/services?' + options, {
       method: 'GET',
       credentials: 'include',
