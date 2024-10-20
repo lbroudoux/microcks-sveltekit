@@ -1,22 +1,25 @@
-# create-svelte
+# Microcks SvelteKit UI
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+A brand new UI for Microcks frontend instead of old Angular one :wink:
 
-## Creating a project
+## Start Microcks
 
-If you're seeing this, you've probably already done this step. Congrats!
+To run the backend services this frontend is using, we're launching both Keycloak and Microcks via containers using ocker compose.
+
+Go to the `/dev` folder and run the docker-compose file:
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+cd dev
+docker compose up
 ```
+
+This started Keycloak that can be accessed via `http://localhost:8180` in your browser. The default admin user/password is `admin/admin`. Docker compose also intialized a `microcks` realm that is already configured for the SvelkeKit UI client.
+
+This also started Microcks that can be accessed via `http://localhost:8080` in your browser. This Microcks instance is un-secured when used via this port - it means that you can import samples easily without taking care of permissions.
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
 ```bash
 npm run dev
@@ -24,6 +27,10 @@ npm run dev
 # or start the server and open the app in a new browser tab
 npm run dev -- --open
 ```
+
+This SvelteKit application is configured to proxy HTTP request starting with `/api` to the Microcks backend we previoulys started an running on port `8080`.
+
+Then connect to the UI using `http://localhost:5173` in your browser. You should then be re-directed to Keycloak authentication form for the `microcks` realm. You can use the default `admin/microcks123` user and password.
 
 ## Building
 
