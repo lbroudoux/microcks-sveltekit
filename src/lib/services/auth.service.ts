@@ -14,11 +14,9 @@
  * limitations under the License.
  */
 
-import { User } from '../models/user.model';
-
+import { User } from "../models/user.model";
 
 export abstract class IAuthenticationService {
-
   /**
    * A way for consumers to subscribe to the current authentication status of the user/app.
    */
