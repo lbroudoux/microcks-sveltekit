@@ -13,27 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import { User } from '../models/user.model';
-
 
 export abstract class IAuthenticationService {
 
   /**
    * A way for consumers to subscribe to the current authentication status of the user/app.
    */
-  abstract isAuthenticated(): Promise<boolean>;
-
-  /**
-   * Get the currently authenticated user.  May be null if the user is not currently authenticated.
-   */
-  abstract getAuthenticatedUser(): Promise<User>;
+  abstract isAuthenticated(): boolean;
 
   /**
    * Immediately gets the current authenticated user (if any).  Returns null if no user is
    * currently authenticated.
    */
-  abstract getAuthenticatedUserNow(): User;
+  abstract getAuthenticatedUser(): User;
 
   /**
    * Called to authenticate a user.
@@ -63,7 +56,7 @@ export abstract class IAuthenticationService {
   /**
    * Called to inject authentication headers into an API REST call.
    */
-  abstract injectAuthHeaders(headers: { [header: string]: string }): void;
+  abstract injectAuthHeaders(headers: Headers): void;
 
   /**
    * Called to return an authentication secret (e.g. the auth access token).

@@ -6,6 +6,8 @@ import Keycloak from 'keycloak-js';
 import { User } from "@/models/user.model";
 import { authenticatedUser } from "@/stores/auth.store";
 import { ConfigService } from '@/services/config.service';
+import { IAuthenticationService } from '@/services/auth.service';
+import { AuthenticationService} from '@/services/auth.service.provider';
 
 
 export const ssr = false;
@@ -78,7 +80,16 @@ export const load: LayoutLoad = async ({data}) => {
   console.log("Layout Authenticated user: " + JSON.stringify(get(authenticatedUser)));
 
   // Load additional application configuration.
-  const configService = ConfigService.instance;
-  configService.loadConfiguredFeatures();
+  // const configService = ConfigService.instance;
+  // configService.loadConfiguredFeatures();
 
+  await loadApplicationServices();
 };
+
+async function loadApplicationServices(): Promise<any> {
+  // Load additional application configuration.
+  const configService = ConfigService.instance;
+  await configService.loadConfiguredFeatures();
+
+  AuthenticationService.initializeAuthenticationService(configService);
+}

@@ -27,7 +27,7 @@ const ANONYMOUS_AUTH_TYPE = 'anonymous';
 
 export class ConfigService {
   
-  static _instance: ConfigService;
+  private static _instance: ConfigService;
 
   private config: any;
 
@@ -73,7 +73,7 @@ export class ConfigService {
     return this.config.auth.type;
   }
 
-  public authToken(): string | null{
+  public authToken(): string | null {
     if (!this.config.auth) {
       return null;
     }
@@ -121,7 +121,7 @@ export class ConfigService {
     return null;
   }
 
-  public async loadConfiguredFeatures(): Promise<any>  {
+  public async loadConfiguredFeatures(): Promise<any> {
     console.info('[ConfigService] Completing config with additional features...');
     const response = await fetch('/api/features/config', { method: 'GET' });
 

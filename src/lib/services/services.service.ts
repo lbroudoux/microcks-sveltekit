@@ -16,6 +16,7 @@
 
 import type { Service } from '../models/service.model';
 import { getAuthenticatedUser } from '@/stores/auth.store';
+import { AuthenticationService } from './auth.service.provider';
 
 export async function getServices(page: number = 1, pageSize: number = 20): Promise<Service[] | Error> {
 
@@ -24,12 +25,18 @@ export async function getServices(page: number = 1, pageSize: number = 20): Prom
   console.log("Service Authenticated user: " + JSON.stringify(getAuthenticatedUser()));
 
   const options = `page=${page - 1}&pageSize=${pageSize}`;
+
+  let headers: Headers = new Headers();
+  AuthenticationService.instance.injectAuthHeaders(headers);
+  console.log("Service Auth Headers: " + JSON.stringify(headers.get('Authorization')))
+
   const response = await fetch('/api/services?' + options, {
       method: 'GET',
       credentials: 'include',
-      headers: {
-        'Authorization': 'Bearer ' + keycloak.token,
-      }
+      headers: headers,
+      //{
+        //'Authorization': 'Bearer ' + keycloak.token,
+      //}
     });
   return response.json() as Promise<Service[]>;
 }
