@@ -123,7 +123,6 @@ export class KeycloakAuthenticationService extends IAuthenticationService {
    */
   public injectAuthHeaders(headers: Headers): void {
     headers.set('Authorization', 'Bearer ' + this.keycloak.token);
-    console.log("injectAuthHeaders: " + JSON.stringify(headers.get('Authorization')));
   }
 
   /**

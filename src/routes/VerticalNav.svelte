@@ -1,5 +1,9 @@
 <script>
+  import { FileCog } from 'lucide-svelte';
   import { LayoutDashboard } from 'lucide-svelte';
+  import { Plug } from 'lucide-svelte';
+  import { Shield } from 'lucide-svelte';
+  import { Store } from 'lucide-svelte';
 
   import * as Tooltip from "$lib/components/ui/tooltip/index.ts";
 </script>
@@ -25,6 +29,62 @@
           </a>
         </Tooltip.Trigger>
         <Tooltip.Content side="right">Dashboard</Tooltip.Content>
+      </Tooltip.Root>
+      <Tooltip.Root>
+        <Tooltip.Trigger asChild let:builder>
+          <a
+            href="/services"
+            class="bg-accent text-accent-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+            use:builder.action
+            {...builder}
+          >
+            <Plug class="h-5 w-5" />
+            <span class="sr-only">API | Services</span>
+          </a>
+        </Tooltip.Trigger>
+        <Tooltip.Content side="right">API | Services</Tooltip.Content>
+      </Tooltip.Root>
+      <Tooltip.Root>
+        <Tooltip.Trigger asChild let:builder>
+          <a
+            href="##"
+            class="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+            use:builder.action
+            {...builder}
+          >
+            <FileCog class="h-5 w-5" />
+            <span class="sr-only">Importers</span>
+          </a>
+        </Tooltip.Trigger>
+        <Tooltip.Content side="right">Importers</Tooltip.Content>
+      </Tooltip.Root>
+      <Tooltip.Root>
+        <Tooltip.Trigger asChild let:builder>
+          <a
+            href="##"
+            class="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+            use:builder.action
+            {...builder}
+          >
+            <Store class="h-5 w-5" />
+            <span class="sr-only">Microcks Hub</span>
+          </a>
+        </Tooltip.Trigger>
+        <Tooltip.Content side="right">Microcks Hub</Tooltip.Content>
+      </Tooltip.Root>
+      <Tooltip.Root>
+        <Tooltip.Trigger asChild let:builder>
+          <a
+            href="##"
+            class="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+            use:builder.action
+            {...builder}
+          >
+            <Shield class="h-5 w-5" />
+            <span class="sr-only">Administration</span>
+          </a>
+        </Tooltip.Trigger>
+        <Tooltip.Content side="right">Administration</Tooltip.Content>
       </Tooltip.Root>
     </nav>
   </aside>

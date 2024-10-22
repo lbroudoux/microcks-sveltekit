@@ -3,13 +3,15 @@
 export const prerender = false;
 
 import type { PageLoad } from './$types';
+import { getServices } from '@/services/services.service';
 
 export const load: PageLoad = async ({ parent, fetch, params }) => {
-  console.log("In / PageLoad()");
+  console.log("In /services PageLoad()");
   let parentData = await parent();
 
-  console.log("In / PageLoad(), after parent load");
+  console.log("In /services PageLoad(), after parent load");
   const data = {
+    services: await getServices()
   }
 
   return data;

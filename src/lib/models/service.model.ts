@@ -15,14 +15,14 @@
  */
 import { Metadata } from './commons.model';
 
-export class Api {
+export interface Api {
   name: string;
   version: string;
   resource: string;
   referencePayload: string;
 }
 
-export class Service {
+export interface Service {
   id: string;
   name: string;
   version: string;
@@ -42,7 +42,7 @@ export enum ServiceType {
   GRAPHQL = 'GRAPHQL'
 }
 
-export class Operation {
+export interface Operation {
   name: string;
   method: string;
   action: string;
@@ -56,13 +56,13 @@ export class Operation {
   parameterConstraints: ParameterConstraint[];
 }
 
-export class OperationMutableProperties {
+export interface OperationMutableProperties {
   dispatcher: string;
   dispatcherRules: string;
   defaultDelay: number;
   parameterConstraints: ParameterConstraint[];
 }
-export class Binding {
+export interface Binding {
   type: BindingType;
   keyType: string;
   destinationType: string;
@@ -81,7 +81,7 @@ export enum BindingType {
   GOOGLEPUBSUB,
   SQS
 }
-export class ParameterConstraint {
+export interface ParameterConstraint {
   name: string;
   in: ParameterLocation;
   required: boolean;
@@ -94,7 +94,7 @@ export enum ParameterLocation {
   header
 }
 
-export class Contract {
+export interface Contract {
   id: string;
   name: string;
   content: string;
@@ -122,17 +122,17 @@ export enum ContractType {
   JSON_FRAGMENT
 }
 
-export class Header {
+export interface Header {
   name: string;
   values: string[];
 }
 
-export class Parameter {
+export interface Parameter {
   name: string;
   value: string;
 }
 
-abstract class Message {
+interface Message {
   name: string;
   content: string;
   operationId: string;
@@ -140,42 +140,42 @@ abstract class Message {
   sourceArtifact: string;
   headers: Header[];
 }
-export class Request extends Message {
+export interface Request extends Message {
   id: string;
   responseId: string;
   queryParameters: Parameter[];
 }
-export class Response extends Message {
+export interface Response extends Message {
   id: string;
   status: string;
   mediaType: string;
   dispatchCriteria: string;
-  isFault = false;
+  isFault: boolean;
 }
-export class EventMessage extends Message {
+export interface EventMessage extends Message {
   id: string;
   mediaType: string;
   dispatchCriteria: string;
 }
 
-export abstract class Exchange {
+export interface Exchange {
   type?: string;
   eventMessage?: EventMessage;
 }
-export class UnidirectionalEvent extends Exchange {
+export interface UnidirectionalEvent extends Exchange {
   eventMessage: EventMessage;
 }
-export class RequestResponsePair extends Exchange {
+export interface RequestResponsePair extends Exchange {
   request: Request;
   response: Response;
 }
 
-export class ServiceView {
+export interface ServiceView {
   service: Service;
   messagesMap: {string: Exchange[]};
 }
 
-export class GenericResource {
+export interface GenericResource {
   id: string;
   serviceId: string;
   payload: any;
