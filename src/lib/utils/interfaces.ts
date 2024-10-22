@@ -25,3 +25,7 @@ export interface WizardStepInput {
   type: "text" | "textarea" | "checkbox";
   required?: boolean;
 }
+
+export interface WizardFormValues {
+  [key: string]: string | boolean;
+}

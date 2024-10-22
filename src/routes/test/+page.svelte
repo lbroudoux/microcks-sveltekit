@@ -4,6 +4,7 @@
 
   import SectionLayout from "@/components/SectionLayout.svelte";
   import Wizard from "@/components/wizard/Wizard.svelte";
+  import WizardTotal from "@/components/wizard/WizardTotal.svelte";
 
   import type { WizardConfig } from "@/utils/interfaces";
 
@@ -64,5 +65,6 @@
 </script>
 
 <SectionLayout>
-  <Wizard {wizard} />
+  <!-- <Wizard {wizard} /> -->
+  <WizardTotal {wizard} />
 </SectionLayout>
