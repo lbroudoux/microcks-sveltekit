@@ -1,7 +1,9 @@
 <script lang="ts">
   import type { PageData } from "./$types";
+  import type { PageData } from "./$types";
   import { Button } from "$lib/components/ui/button";
   import * as Card from "$lib/components/ui/card/index.js";
+  import { onMount } from "svelte";
   import { onMount } from "svelte";
 
   export let data: PageData;
@@ -9,9 +11,12 @@
   onMount(() => {
     console.log("In page onMount()");
   });
+  });
 </script>
 
 <svelte:head>
+  <title>Home</title>
+  <meta name="description" content="Svelte demo app" />
   <title>Home</title>
   <meta name="description" content="Svelte demo app" />
 </svelte:head>
