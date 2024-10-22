@@ -29,3 +29,9 @@ export interface WizardStepInput {
 export interface WizardFormValues {
   [key: string]: string | boolean;
 }
+
+export interface MenuSidebar {
+  title: string;
+  href: string;
+  icon: typeof SvelteComponent;
+}

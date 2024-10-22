@@ -2,7 +2,6 @@
   import type { SvelteComponent } from "svelte";
   import { Settings, Tag } from "lucide-svelte";
 
-  import SectionLayout from "@/components/SectionLayout.svelte";
   import Wizard from "@/components/wizard/Wizard.svelte";
   import WizardTotal from "@/components/wizard/WizardTotal.svelte";
 
@@ -64,7 +63,7 @@
   };
 </script>
 
-<SectionLayout>
+<section>
   <!-- <Wizard {wizard} /> -->
   <WizardTotal {wizard} />
-</SectionLayout>
+</section>

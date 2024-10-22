@@ -16,10 +16,9 @@
 
 import { AuthenticationService } from "./services/auth.service.provider";
 
-
 export async function httpGet<T>(endpoint: string): Promise<T> {
   const response = await fetch(endpoint, {
-    method: 'GET'
+    method: "GET",
   });
   return response.json() as Promise<T>;
 }
@@ -28,10 +27,10 @@ export async function httpGetWithAuth<T>(endpoint: string): Promise<T> {
   // This API call requires authentication.
   let headers: Headers = new Headers();
   AuthenticationService.instance.injectAuthHeaders(headers);
-  
+
   const response = await fetch(endpoint, {
-    method: 'GET',
-    headers: headers
+    method: "GET",
+    headers: headers,
   });
   return response.json() as Promise<T>;
 }
