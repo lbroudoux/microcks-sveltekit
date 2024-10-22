@@ -10,7 +10,5 @@
 </script>
 
 <SectionHeading {sectionHeading}>
-  <div slot="headingActions" class="flex flex-row gap-2">
-    <Button variant="default">Create Job</Button>
-  </div>
+  <Button slot="headingActions" variant="default">Create Job</Button>
 </SectionHeading>

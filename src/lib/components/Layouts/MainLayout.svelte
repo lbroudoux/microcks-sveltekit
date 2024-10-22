@@ -4,6 +4,6 @@
   export let classes: string = "";
 </script>
 
-<main class={clsx("w-full h-full ml-16 p-8", classes)}>
+<main class={clsx("h-full ml-16 p-8", classes)}>
   <slot />
 </main>
