@@ -1,7 +1,7 @@
 <script>
-  import MenuSidebar from "@/components/sidebar/MenuSidebar.svelte";
+  import MenuSidebar from "$lib/components/sidebar/MenuSidebar.svelte";
 
-  import { menus } from "@/utils/constants";
+  import { menus } from "$lib/utils/constants";
 </script>
 
 <aside

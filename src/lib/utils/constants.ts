@@ -1,6 +1,6 @@
 import { LayoutDashboard, Plug, FileCog, Store, Shield } from "lucide-svelte";
 
-import type { MenuSidebar } from "@/interfaces";
+import type { MenuSidebar } from "$lib/interfaces";
 import type { SvelteComponent } from "svelte";
 
 export let menus: MenuSidebar[] = [

@@ -2,10 +2,11 @@
   import type { SvelteComponent } from "svelte";
   import { Settings, Tag } from "lucide-svelte";
 
-  import Wizard from "@/components/wizard/Wizard.svelte";
-  import WizardTotal from "@/components/wizard/WizardTotal.svelte";
+  import Wizard from "$lib/components/wizard/Wizard.svelte";
+  import WizardTotal from "$lib/components/wizard/WizardTotal.svelte";
+  import PageLayout from "$lib/components/layouts/PageLayout.svelte";
 
-  import type { WizardConfig } from "@/utils/interfaces";
+  import type { WizardConfig } from "$lib/utils/interfaces";
 
   let wizard: WizardConfig = {
     triggerValue: "Create",
@@ -63,7 +64,7 @@
   };
 </script>
 
-<section>
+<PageLayout>
   <!-- <Wizard {wizard} /> -->
   <WizardTotal {wizard} />
-</section>
+</PageLayout>

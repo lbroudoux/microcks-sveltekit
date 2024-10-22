@@ -1,12 +1,12 @@
 <script>
-  import Sidebar from "@/components/Sidebar/Sidebar.svelte";
+  import Sidebar from "$lib/components/sidebar/Sidebar.svelte";
 
   import "../app.css";
 </script>
 
 <div class="w-screen h-screen">
   <Sidebar />
-  <main class="h-full w-full ml-16">
+  <main>
     <slot />
   </main>
 </div>

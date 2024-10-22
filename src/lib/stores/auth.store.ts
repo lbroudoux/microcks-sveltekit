@@ -14,12 +14,21 @@
  * limitations under the License.
  */
 
-import { User } from '@/models/user.model';
-import { derived, writable, get, type Readable, type Writable } from 'svelte/store';
+import { User } from "$lib/models/user.model";
+import {
+  derived,
+  writable,
+  get,
+  type Readable,
+  type Writable,
+} from "svelte/store";
 
 export const authenticatedUser: Writable<User> = writable(new User());
 
-export const authenticatedUserValue: Readable<User> = derived(authenticatedUser, ($authenticatedUser) => $authenticatedUser)
+export const authenticatedUserValue: Readable<User> = derived(
+  authenticatedUser,
+  ($authenticatedUser) => $authenticatedUser
+);
 
 export function getAuthenticatedUser(): User {
   return get(authenticatedUser);

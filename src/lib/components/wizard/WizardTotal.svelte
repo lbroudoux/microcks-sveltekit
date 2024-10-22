@@ -1,14 +1,14 @@
 <script lang="ts">
   import { writable, type Writable } from "svelte/store";
 
-  import Label from "@/components/ui/label/label.svelte";
-  import Input from "@/components/ui/input/input.svelte";
-  import Textarea from "@/components/ui/textarea/textarea.svelte";
-  import Checkbox from "@/components/ui/checkbox/checkbox.svelte";
-  import * as Dialog from "@/components/ui/dialog/index";
-  import { Button, buttonVariants } from "@/components/ui/button/index";
+  import Label from "$lib/components/ui/label/label.svelte";
+  import Input from "$lib/components/ui/input/input.svelte";
+  import Textarea from "$lib/components/ui/textarea/textarea.svelte";
+  import Checkbox from "$lib/components/ui/checkbox/checkbox.svelte";
+  import * as Dialog from "$lib/components/ui/dialog/index";
+  import { Button, buttonVariants } from "$lib/components/ui/button/index";
 
-  import type { WizardConfig, WizardFormValues } from "@/utils/interfaces";
+  import type { WizardConfig, WizardFormValues } from "$lib/utils/interfaces";
 
   export let wizard: WizardConfig = {
     triggerValue: "Create",

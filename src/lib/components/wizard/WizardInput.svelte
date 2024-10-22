@@ -1,10 +1,10 @@
 <script lang="ts">
-  import Label from "@/components/ui/label/label.svelte";
-  import Input from "@/components/ui/input/input.svelte";
-  import Textarea from "@/components/ui/textarea/textarea.svelte";
-  import Checkbox from "@/components/ui/checkbox/checkbox.svelte";
+  import Label from "$lib/components/ui/label/label.svelte";
+  import Input from "$lib/components/ui/input/input.svelte";
+  import Textarea from "$lib/components/ui/textarea/textarea.svelte";
+  import Checkbox from "$lib/components/ui/checkbox/checkbox.svelte";
 
-  import type { WizardStepInput } from "@/utils/interfaces";
+  import type { WizardStepInput } from "$lib/utils/interfaces";
 
   export let input: WizardStepInput;
 </script>

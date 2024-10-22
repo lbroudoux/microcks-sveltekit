@@ -5,7 +5,7 @@
   import * as Dialog from "$lib/components/ui/dialog/index";
   import { Button, buttonVariants } from "$lib/components/ui/button/index";
 
-  import type { WizardConfig, WizardFormValues } from "@/utils/interfaces";
+  import type { WizardConfig, WizardFormValues } from "$lib/utils/interfaces";
 
   export let wizard: WizardConfig = {
     triggerValue: "Create",

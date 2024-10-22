@@ -2,9 +2,9 @@
   import { onMount } from "svelte";
   import type { PageData } from "./$types";
 
-  import PageLayout from "@/components/layouts/PageLayout.svelte";
-  import { Button } from "@/components/ui/button";
-  import * as Card from "@/components/ui/card/index.js";
+  import PageLayout from "$lib/components/layouts/PageLayout.svelte";
+  import { Button } from "$lib/components/ui/button";
+  import * as Card from "$lib/components/ui/card/index.js";
 
   export let data: PageData;
 

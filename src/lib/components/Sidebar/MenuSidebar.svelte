@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { Root, Trigger, Content } from "@/components/ui/tooltip/index";
+  import { Root, Trigger, Content } from "$lib/components/ui/tooltip/index";
 
-  import type { MenuSidebar } from "@/utils/interfaces";
+  import type { MenuSidebar } from "$lib/utils/interfaces";
 
   export let menu: MenuSidebar;
 </script>
