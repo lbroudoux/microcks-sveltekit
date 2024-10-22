@@ -1,12 +1,10 @@
 <script lang="ts">
-  // Implementation example of the component => src/routes/test/+page.svelte
-
   import type { SectionHeading } from "$lib/utils/interfaces";
 
   export let sectionHeading: SectionHeading;
 </script>
 
-<section class="w-full flex flex-row items-start justify-between gap-4">
+<section class="w-full flex flex-row items-start justify-between gap-4 py-4">
   <div class="flex flex-col justify-start items-start gap-2 w-3/5">
     <h1 class="text-xl">
       {sectionHeading.title}
