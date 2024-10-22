@@ -1,12 +1,13 @@
 <script>
   import Sidebar from "$lib/components/sidebar/Sidebar.svelte";
+  import MainLayout from "$lib/components/layouts/MainLayout.svelte";
 
   import "../app.css";
 </script>
 
 <div class="w-screen h-screen">
   <Sidebar />
-  <main>
+  <MainLayout>
     <slot />
-  </main>
+  </MainLayout>
 </div>

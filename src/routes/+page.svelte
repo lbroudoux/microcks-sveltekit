@@ -114,7 +114,4 @@
       </Card.Root>
     </div>
   </div>
-</P>
-
-<style>
-</style>
+</PageLayout>

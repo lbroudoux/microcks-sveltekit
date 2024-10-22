@@ -35,3 +35,8 @@ export interface MenuSidebar {
   href: string;
   icon: typeof SvelteComponent;
 }
+
+export interface SectionHeading {
+  title: string;
+  description: string;
+}
