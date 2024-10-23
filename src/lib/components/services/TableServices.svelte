@@ -22,6 +22,7 @@
   import Input from "$lib/components/ui/input/input.svelte";
 
   import type { Service } from "$lib/models/service.model";
+  import { getIconServiceType } from "$lib/utils/icons";
 
   export let services: Service[] = [];
 
@@ -34,8 +35,12 @@
   });
   const columns = table.createColumns([
     table.column({
-      accessor: "type",
       header: "Type",
+      accessor: (row) => row.type,
+      cell: (item) => {
+        const Icon = getIconServiceType(item.value);
+        return createRender(Icon);
+      },
     }),
     table.column({
       accessor: "name",
