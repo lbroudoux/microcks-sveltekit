@@ -46,3 +46,10 @@ export interface TabContentAdministration {
   title: string;
   description: string;
 }
+
+export interface Importer {
+  id: string;
+  name: string;
+  version: string;
+  href: string;
+}

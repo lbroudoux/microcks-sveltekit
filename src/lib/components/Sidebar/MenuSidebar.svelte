@@ -1,16 +1,25 @@
 <script lang="ts">
+  import { page } from "$app/stores";
+
   import { Root, Trigger, Content } from "$lib/components/ui/tooltip/index";
 
   import type { MenuSidebar } from "$lib/utils/interfaces";
 
   export let menu: MenuSidebar;
+
+  $: isActive =
+    menu.href === "/"
+      ? $page.url.pathname === menu.href
+      : $page.url.pathname.startsWith(menu.href);
 </script>
 
 <Root>
   <Trigger asChild let:builder>
     <a
       href={menu.href}
-      class="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+      class="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8 {isActive
+        ? 'bg-muted'
+        : ''}"
       use:builder.action
       {...builder}
     >
