@@ -40,3 +40,9 @@ export interface SectionHeading {
   title: string;
   description: string;
 }
+
+export interface TabContentAdministration {
+  value: string;
+  title: string;
+  description: string;
+}

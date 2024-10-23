@@ -3,6 +3,7 @@
 
   import PageLayout from "$lib/components/layouts/PageLayout.svelte";
   import SectionHeading from "$lib/components/layouts/SectionHeading.svelte";
+  import TabsAdministration from "$lib/components/administration/TabsAdministration.svelte";
 
   import { shAdministration } from "$lib/utils/constants";
 
@@ -13,5 +14,5 @@
 
 <PageLayout>
   <SectionHeading sectionHeading={shAdministration} />
-  <p>Administration page</p>
+  <TabsAdministration />
 </PageLayout>
