@@ -9,8 +9,8 @@
   export let data: PageData;
 
   onMount(() => {
-    console.log("In page onMount()");
-  });
+    console.log("In page / onMount()");
+  })
 </script>
 
 <svelte:head>
