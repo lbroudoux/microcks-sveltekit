@@ -2,8 +2,8 @@
 // it so that it gets served as a static asset in production
 export const prerender = false;
 
-import type { PageLoad } from './$types';
-import { getService } from '@/services/services.service';
+import type { PageLoad } from "./$types";
+import { getService } from "$lib/services/services.service";
 
 export const load: PageLoad = async ({ parent, params }) => {
   console.log("In /services/[id] PageLoad()");
@@ -11,8 +11,8 @@ export const load: PageLoad = async ({ parent, params }) => {
 
   console.log("In /services[id] PageLoad(), after parent load");
   const data = {
-    service: await getService(params.id)
-  }
+    service: await getService(params.id),
+  };
 
   return data;
-}
+};

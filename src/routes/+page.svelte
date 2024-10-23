@@ -1,23 +1,32 @@
 <script lang="ts">
-  import type { PageData } from './$types';
+  import { onMount } from "svelte";
+  import type { PageData } from "./$types";
+
+  import PageLayout from "$lib/components/layouts/PageLayout.svelte";
   import { Button } from "$lib/components/ui/button";
   import * as Card from "$lib/components/ui/card/index.js";
-  import { onMount } from 'svelte';
 
   export let data: PageData;
 
   onMount(() => {
+<<<<<<< HEAD
     console.log("In page / onMount()");
   })
+=======
+    console.log("In page onMount()");
+  });
+>>>>>>> a6cf28e761c102cb4da613779b34090c623e83ba
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+  <title>Home</title>
+  <meta name="description" content="Svelte demo app" />
+  <title>Home</title>
+  <meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section>
-	<div>
+<PageLayout>
+  <div>
     <Button>Click me</Button>
   </div>
 
@@ -110,8 +119,4 @@
       </Card.Root>
     </div>
   </div>
-</section>
-
-<style>
-
-</style>
+</PageLayout>

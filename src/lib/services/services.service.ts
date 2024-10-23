@@ -14,17 +14,20 @@
  * limitations under the License.
  */
 
-import { httpGetWithAuth } from '@/http-utils';
-import type { Service } from '../models/service.model';
-import { AuthenticationService } from './auth.service.provider';
+import { httpGetWithAuth } from "$lib/http-utils";
+import type { Service } from "../models/service.model";
+import { AuthenticationService } from "./auth.service.provider";
 
 /**
- * 
- * @param page 
- * @param pageSize 
- * @returns 
+ *
+ * @param page
+ * @param pageSize
+ * @returns
  */
-export async function getServices(page: number = 1, pageSize: number = 20): Promise<Service[]> {
+export async function getServices(
+  page: number = 1,
+  pageSize: number = 20
+): Promise<Service[]> {
   // Set options string.
   const options = `page=${page - 1}&pageSize=${pageSize}`;
 
@@ -32,19 +35,21 @@ export async function getServices(page: number = 1, pageSize: number = 20): Prom
   let headers: Headers = new Headers();
   AuthenticationService.instance.injectAuthHeaders(headers);
 
-  const response = await fetch('/api/services?' + options, {
-    method: 'GET',
-    credentials: 'include',
-    headers: headers
+  const response = await fetch("/api/services?" + options, {
+    method: "GET",
+    credentials: "include",
+    headers: headers,
   });
   return response.json() as Promise<Service[]>;
 }
 
 /**
- * 
- * @param serviceId 
+ *
+ * @param serviceId
  */
 export async function getService(serviceId: string): Promise<Service> {
   // This API call requires authentication.
-  return httpGetWithAuth<Service>('/api/services/' + serviceId + '?messages=false')
+  return httpGetWithAuth<Service>(
+    "/api/services/" + serviceId + "?messages=false"
+  );
 }

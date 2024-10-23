@@ -2,15 +2,14 @@
 // it so that it gets served as a static asset in production
 export const prerender = false;
 
-import type { PageLoad } from './$types';
+import type { PageLoad } from "./$types";
 
 export const load: PageLoad = async ({ parent, fetch, params }) => {
   console.log("In / PageLoad()");
   let parentData = await parent();
 
   console.log("In / PageLoad(), after parent load");
-  const data = {
-  }
+  const data = {};
 
   return data;
-}
+};

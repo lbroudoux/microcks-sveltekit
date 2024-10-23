@@ -14,19 +14,18 @@
  * limitations under the License.
  */
 
-import type { User } from "@/models/user.model";
+import type { User } from "$lib/models/user.model";
 
 const DEFAULT_CONFIG: any = {
-  mode: 'dev',
+  mode: "dev",
   auth: {
-    type: 'keycloakjs'
-  }
+    type: "keycloakjs",
+  },
 };
 
-const ANONYMOUS_AUTH_TYPE = 'anonymous';
+const ANONYMOUS_AUTH_TYPE = "anonymous";
 
 export class ConfigService {
-  
   private static _instance: ConfigService;
 
   private config: any;
@@ -39,20 +38,22 @@ export class ConfigService {
     const w: any = window;
     if (w.MicrocksConfig) {
       this.config = w.MicrocksConfig;
-      console.info('[ConfigService] Found app config.');
+      console.info("[ConfigService] Found app config.");
     } else {
-      console.info('[ConfigService] App config not found!');
+      console.info("[ConfigService] App config not found!");
       this.config = DEFAULT_CONFIG;
 
       // Check Keycloak realm configuration.
       const keycloak = w.keycloak;
       if (!keycloak || !keycloak.realm) {
-        console.info('[ConfigService] No Keycloak realm found. Switching to anonymous auth type.');
+        console.info(
+          "[ConfigService] No Keycloak realm found. Switching to anonymous auth type."
+        );
         this.config.auth.type = ANONYMOUS_AUTH_TYPE;
       }
     }
   }
- 
+
   /**
    * The static getter that controls access to the singleton instance.
    *
@@ -108,7 +109,7 @@ export class ConfigService {
   public hasFeatureEnabled(feature: string): boolean {
     if (this.config.features) {
       const featureConfig = this.config.features[feature];
-      return featureConfig.enabled === 'true';
+      return featureConfig.enabled === "true";
     }
     return false;
   }
@@ -122,11 +123,15 @@ export class ConfigService {
   }
 
   public async loadConfiguredFeatures(): Promise<any> {
-    console.info('[ConfigService] Completing config with additional features...');
-    const response = await fetch('/api/features/config', { method: 'GET' });
+    console.info(
+      "[ConfigService] Completing config with additional features..."
+    );
+    const response = await fetch("/api/features/config", { method: "GET" });
 
     this.config.features = await response.json();
-    console.info('[ConfigService] Got config: ' + JSON.stringify(this.config.features));
+    console.info(
+      "[ConfigService] Got config: " + JSON.stringify(this.config.features)
+    );
     return response;
   }
 }
