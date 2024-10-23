@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Metadata } from './commons.model';
+import type { Metadata } from "./commons.model";
 
 export interface Api {
   name: string;
@@ -33,13 +33,13 @@ export interface Service {
   sourceArtifact: string;
 }
 export enum ServiceType {
-  SOAP_HTTP = 'SOAP_HTTP',
-  REST = 'REST',
-  EVENT = 'EVENT',
-  GRPC = 'GRPC',
-  GENERIC_REST = 'GENERIC_REST',
-  GENERIC_EVENT = 'GENERIC_EVENT',
-  GRAPHQL = 'GRAPHQL'
+  SOAP_HTTP = "SOAP_HTTP",
+  REST = "REST",
+  EVENT = "EVENT",
+  GRPC = "GRPC",
+  GENERIC_REST = "GENERIC_REST",
+  GENERIC_EVENT = "GENERIC_EVENT",
+  GRAPHQL = "GRAPHQL",
 }
 
 export interface Operation {
@@ -48,7 +48,7 @@ export interface Operation {
   action: string;
   inputName: string;
   outputName: string;
-  bindings: {string: Binding[]};
+  bindings: { string: Binding[] };
   dispatcher: string;
   dispatcherRules: string;
   defaultDelay: number;
@@ -79,7 +79,7 @@ export enum BindingType {
   AMQP,
   AMQP1,
   GOOGLEPUBSUB,
-  SQS
+  SQS,
 }
 export interface ParameterConstraint {
   name: string;
@@ -91,7 +91,7 @@ export interface ParameterConstraint {
 export enum ParameterLocation {
   path,
   query,
-  header
+  header,
 }
 
 export interface Contract {
@@ -119,7 +119,7 @@ export enum ContractType {
   GRAPHQL_SCHEMA,
   POSTMAN_COLLECTION,
   SOAP_UI_PROJECT,
-  JSON_FRAGMENT
+  JSON_FRAGMENT,
 }
 
 export interface Header {
@@ -172,7 +172,7 @@ export interface RequestResponsePair extends Exchange {
 
 export interface ServiceView {
   service: Service;
-  messagesMap: {string: Exchange[]};
+  messagesMap: { string: Exchange[] };
 }
 
 export interface GenericResource {

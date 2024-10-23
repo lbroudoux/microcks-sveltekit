@@ -2,6 +2,8 @@ import type { SvelteComponent } from "svelte";
 import { LayoutDashboard, Plug, FileCog, Store, Shield } from "lucide-svelte";
 
 import type { MenuSidebar, SectionHeading } from "$lib/utils/interfaces";
+import type { Service } from "$lib/models/service.model";
+import { ServiceType } from "$lib/models/service.model";
 
 export const menus: MenuSidebar[] = [
   {
@@ -48,3 +50,35 @@ export const shAdministration: SectionHeading = {
   description:
     "Use this section to manage your Users, export and import repository Snapshots and manage Secrets.",
 };
+
+export const data: Service[] = [
+  {
+    id: "1",
+    name: "Service 1",
+    version: "1.0.0",
+    xmlNS: "http://service1.com",
+    type: ServiceType.REST,
+    operations: [
+      {
+        name: "Operation 1",
+        method: "GET",
+        action: "get",
+        inputName: "input",
+        outputName: "output",
+        bindings: { string: [] },
+        dispatcher: "dispatcher",
+        dispatcherRules: "rules",
+        defaultDelay: 0,
+        resourcePaths: ["/path1"],
+        parameterConstraints: [],
+      },
+    ],
+    metadata: {
+      createdOn: 0,
+      lastUpdate: 0,
+      annotations: {},
+      labels: {},
+    },
+    sourceArtifact: "artifact",
+  },
+];
