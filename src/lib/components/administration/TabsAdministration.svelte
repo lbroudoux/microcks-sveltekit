@@ -1,9 +1,13 @@
 <script lang="ts">
+  import { Plus } from "lucide-svelte/icons";
+
+  import Dropzone from "$lib/components/global/Dropzone.svelte";
   import TabContentAdministration from "$lib/components/administration/TabContentAdministration.svelte";
-  import { Root, List, Trigger, Content } from "$lib/components/ui/tabs/index";
+  import { Root, List, Trigger } from "$lib/components/ui/tabs/index";
+  import Button from "$lib/components/ui/button/button.svelte";
 </script>
 
-<Root value="users" class="py-4 w-full">
+<Root value="snapshots" class="py-4 w-full">
   <List class="grid grid-cols-3 w-[400px]">
     <Trigger value="users">Users</Trigger>
     <Trigger value="snapshots">Snapshots</Trigger>
@@ -24,7 +28,15 @@
       description:
         "Upload and import a previously exported JSON repository snapshot.",
     }}
-  />
+  >
+    <Button slot="tabAction" variant={"outline"}>
+      <Plus size={16} />
+      Import
+    </Button>
+    <div slot="tabContent" class="w-full">
+      <Dropzone />
+    </div>
+  </TabContentAdministration>
   <TabContentAdministration
     tab={{
       value: "secrets",
