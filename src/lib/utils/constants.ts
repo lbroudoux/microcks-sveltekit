@@ -1,6 +1,16 @@
 import type { SvelteComponent } from "svelte";
-import { LayoutDashboard, Plug, FileCog, Store, Shield } from "lucide-svelte";
+import {
+  LayoutDashboard,
+  Plug,
+  FileCog,
+  Store,
+  Shield,
+  Settings,
+  Tag,
+  Lock,
+} from "lucide-svelte";
 
+import type { WizardConfig } from "$lib/utils/interfaces";
 import type { MenuSidebar, SectionHeading } from "$lib/utils/interfaces";
 import type { Service } from "$lib/models/service.model";
 import { ServiceType } from "$lib/models/service.model";
@@ -82,3 +92,71 @@ export const data: Service[] = [
     sourceArtifact: "artifact",
   },
 ];
+
+export const wizardConfigCreateImporters: WizardConfig = {
+  triggerValue: "Create",
+  submitValue: "Create",
+  title: "Create a new job",
+  steps: [
+    {
+      icon: Settings as typeof SvelteComponent,
+      title: "Importer properties",
+      stepName: "Importer Job properties",
+      inputs: [
+        {
+          label: "Name",
+          name: "name",
+          description:
+            "The name this import job will have for later controlling it (should be unique).",
+          placeholder: "eg. My Job Name",
+          type: "text",
+          required: true,
+        },
+        {
+          label: "Repository URL",
+          name: "repositoryUrl",
+          description:
+            "The URL we'll use to scan your project (may be a Git or Subversion repository).",
+          placeholder:
+            "eg. http://git.mycompany.com/repos/master/MyRepository.xml",
+          type: "text",
+          required: true,
+        },
+        {
+          label: "Just merge examples into existing API | Service definition.",
+          name: "isSecondaryArtifact",
+          description: "Is a Secondary Artifact ?",
+          type: "checkbox",
+        },
+      ],
+    },
+    {
+      icon: Lock as typeof SvelteComponent,
+      title: " Authentification secret",
+      stepName: "Authentification options",
+      inputs: [
+        {
+          label:
+            "Select an Authentification Secret (should be an existing one)",
+          name: "useAuthentificationSecret",
+          description: "Use Authentification Secret ?",
+          type: "checkbox",
+        },
+      ],
+    },
+    {
+      icon: Tag as typeof SvelteComponent,
+      title: "Labels",
+      description:
+        "Labels help you organize and select resources. Adding labels below will let you query for objects that have similar, overlapping or dissimilar labels.",
+      inputs: [
+        {
+          label: "Labels for ",
+          name: "labels",
+          placeholder: "domain=frontend",
+          type: "textarea",
+        },
+      ],
+    },
+  ],
+};

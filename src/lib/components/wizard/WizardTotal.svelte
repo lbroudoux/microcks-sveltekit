@@ -1,5 +1,6 @@
 <script lang="ts">
   import { writable, type Writable } from "svelte/store";
+  import { toast } from "svelte-sonner";
 
   import Label from "$lib/components/ui/label/label.svelte";
   import Input from "$lib/components/ui/input/input.svelte";
@@ -10,33 +11,9 @@
 
   import type { WizardConfig, WizardFormValues } from "$lib/utils/interfaces";
 
-  export let wizard: WizardConfig = {
-    triggerValue: "Create",
-    submitValue: "Create",
-    title: "",
-    description: "",
-    steps: [
-      {
-        icon: undefined,
-        title: "",
-        stepName: "",
-        description: "",
-        inputs: [
-          {
-            label: "",
-            name: "step1-input",
-            id: "step1-input",
-            description: "",
-            placeholder: "",
-            type: "text",
-            required: false,
-          },
-        ],
-      },
-    ],
-  };
+  export let wizardConfig: WizardConfig;
 
-  const numSteps: number = wizard.steps.length;
+  const numSteps: number = wizardConfig.steps.length;
   let activeStep: Writable<number> = writable(0);
   let formValues: Writable<WizardFormValues> = writable({});
 
@@ -73,6 +50,7 @@
   function handleSubmit(event: Event) {
     event.preventDefault();
     formValues.subscribe((values) => {
+      toast(JSON.stringify(values));
       console.log("Form values:", values);
     });
   }
@@ -80,19 +58,19 @@
 
 <Dialog.Root>
   <Dialog.Trigger class={buttonVariants({ variant: "outline" })}>
-    {wizard.triggerValue}
+    {wizardConfig.triggerValue}
   </Dialog.Trigger>
   <Dialog.Content>
     <Dialog.Header class="border-b w-full py-4">
-      <Dialog.Title class="font-semibold">{wizard.title}</Dialog.Title>
-      {#if wizard.description}
-        <Dialog.Description>{wizard.description}</Dialog.Description>
+      <Dialog.Title class="font-semibold">{wizardConfig.title}</Dialog.Title>
+      {#if wizardConfig.description}
+        <Dialog.Description>{wizardConfig.description}</Dialog.Description>
       {/if}
     </Dialog.Header>
 
     <form on:submit={handleSubmit}>
       <div class="flex justify-between items-center py-8">
-        {#each wizard.steps as step, index}
+        {#each wizardConfig.steps as step, index}
           <div
             class="flex-1 flex gap-2 flex-col items-center justify-center text-center"
           >
@@ -114,12 +92,16 @@
         {/each}
       </div>
 
-      {#each wizard.steps as step, index}
+      {#each wizardConfig.steps as step, index}
         {#if index === $activeStep}
           <div class="flex flex-col items-start justify-start gap-4 py-4">
-            <div class="inline-flex gap-2 font-medium">
+            <div class="inline-flex gap-2">
               {#if step.icon}
-                <svelte:component this={step.icon} />
+                <svelte:component
+                  this={step.icon}
+                  class="w-5 h-5"
+                  strokeWidth={1.5}
+                />
               {/if}
               <p>{step.title}</p>
             </div>
@@ -159,7 +141,7 @@
                     />
                   {/if}
                   {#if input.description}
-                    <p class="text-sm text-muted-foreground">
+                    <p class="text-sm w-full text-muted-foreground">
                       {input.description}
                     </p>
                   {/if}
@@ -194,7 +176,7 @@
           >Previous</Button
         >
         {#if $activeStep === numSteps - 1}
-          <Button type="submit">{wizard.submitValue}</Button>
+          <Button type="submit">{wizardConfig.submitValue}</Button>
         {:else}
           <Button type="button" on:click={nextStep}>Next</Button>
         {/if}
