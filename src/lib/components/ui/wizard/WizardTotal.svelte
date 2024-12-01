@@ -2,12 +2,12 @@
   import { writable, type Writable } from "svelte/store";
   import { toast } from "svelte-sonner";
 
-  import Label from "$lib/components/ui/label/label.svelte";
-  import Input from "$lib/components/ui/input/input.svelte";
-  import Textarea from "$lib/components/ui/textarea/textarea.svelte";
-  import Checkbox from "$lib/components/ui/checkbox/checkbox.svelte";
-  import * as Dialog from "$lib/components/ui/dialog/index";
-  import { Button, buttonVariants } from "$lib/components/ui/button/index";
+  import Label from "../label/label.svelte";
+  import Input from "../input/input.svelte";
+  import Textarea from "../textarea/textarea.svelte";
+  import Checkbox from "../checkbox/checkbox.svelte";
+  import * as Dialog from "$lib/components/ui/dialog";
+  import { Button, buttonVariants } from "$lib/components/ui/button";
 
   import type { WizardConfig, WizardFormValues } from "$lib/utils/interfaces";
 

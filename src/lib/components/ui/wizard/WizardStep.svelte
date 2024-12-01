@@ -1,5 +1,5 @@
 <script lang="ts">
-  import WizardInput from "$lib/components/wizard/WizardInput.svelte";
+  import WizardInput from "$lib/components/ui/wizard/WizardInput.svelte";
 
   import type { WizardStep } from "$lib/utils/interfaces";
 

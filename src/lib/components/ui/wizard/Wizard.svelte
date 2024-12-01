@@ -1,9 +1,9 @@
 <script lang="ts">
   import { writable, type Writable } from "svelte/store";
 
-  import WizardStep from "$lib/components/wizard/WizardStep.svelte";
-  import * as Dialog from "$lib/components/ui/dialog/index";
-  import { Button, buttonVariants } from "$lib/components/ui/button/index";
+  import WizardStep from "$lib/components/ui/wizard/WizardStep.svelte";
+  import * as Dialog from "$lib/components/ui/dialog";
+  import { Button, buttonVariants } from "$lib/components/ui/button";
 
   import type { WizardConfig, WizardFormValues } from "$lib/utils/interfaces";
 

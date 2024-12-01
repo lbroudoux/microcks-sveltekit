@@ -5,7 +5,6 @@
     Root,
     Trigger,
     Content,
-    Group,
     Item,
     Separator,
   } from "$lib/components/ui/dropdown-menu/index";
