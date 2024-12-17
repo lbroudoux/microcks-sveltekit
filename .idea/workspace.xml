@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6b57cd4b-b6f6-463b-9aaa-b63bbc6491c5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/lib/components/Layouts/MainLayout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/components/layouts/MainLayout.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/components/Layouts/PageLayout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/components/layouts/PageLayout.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/components/Layouts/SectionHeading.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/components/layouts/SectionHeading.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/components/Sidebar/MenuSidebar.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/components/sidebar/MenuSidebar.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/components/Sidebar/Sidebar.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/components/sidebar/Sidebar.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/components/administration/TabsAdministration.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/components/administration/TabsAdministration.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/components/global/Dropzone.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/components/services/ActionTableServices.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/components/services/ActionTableServices.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/components/wizard/Wizard.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/components/ui/wizard/Wizard.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/components/wizard/WizardInput.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/components/ui/wizard/WizardInput.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/components/wizard/WizardStep.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/components/ui/wizard/WizardStep.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/components/wizard/WizardTotal.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/components/ui/wizard/WizardTotal.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/images/github.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/images/svelte-logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/images/svelte-welcome.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/images/svelte-welcome.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/stores/auth.store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/stores/auth.store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/test/wizard/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/test/wizard/+page.svelte" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "abroudoux"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:lbroudoux/microcks-sveltekit.git",
+    "accountId": "aa37561c-0317-41f9-9ce1-4b67c160889f"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="2pH2PnhDrCJW9doVVnljmwuRblg" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "refactor/lib-directory-architecture",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "MTFeaturesSettingsConfigurable",
+    "ts.external.directory.path": "/Users/abroudoux/dev/js/svelte/microcks-sveltekit/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/lib" />
+      <recent name="$PROJECT_DIR$/src/lib/components/ui" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-WS-243.21565.180" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6b57cd4b-b6f6-463b-9aaa-b63bbc6491c5" name="Changes" comment="" />
+      <created>1732408660256</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1732408660256</updated>
+      <workItem from="1732408663943" duration="2569000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
