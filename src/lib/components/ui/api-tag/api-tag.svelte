@@ -1,7 +1,17 @@
 <script lang="ts">
-  import Badge from "$lib/components/ui/badge/badge.svelte";
+  import { apiTypes } from "$lib/utils/constants";
+  import type { ApiType } from "$lib/utils/types";
+
+  export let type: string;
+
+  let apiType: ApiType = apiTypes.find(
+    (t) => t.name.toUpperCase() === type.toUpperCase()
+  ) || {
+    name: "UNKNOWN",
+    color: "gray",
+  };
 </script>
 
-<Badge {...$$props}>
-  <slot />
-</Badge>
+<span class={`p-2 rounded font-normal uppercase bg-rest text-white`}>
+  {apiType.name}
+</span>

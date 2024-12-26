@@ -2,4 +2,4 @@
   import ApiTag from "$lib/components/ui/api-tag";
 </script>
 
-<ApiTag>Test</ApiTag>
+<ApiTag type="REST" />

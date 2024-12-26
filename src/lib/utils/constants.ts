@@ -14,6 +14,7 @@ import type { WizardConfig, Importer } from "$lib/utils/interfaces";
 import type { MenuSidebar, SectionHeading } from "$lib/utils/interfaces";
 import type { Service } from "$lib/models/service.model";
 import { ServiceType } from "$lib/models/service.model";
+import type { ApiType } from "$lib/utils/types";
 
 export const menus: MenuSidebar[] = [
   {
@@ -192,4 +193,10 @@ export const importers: Importer[] = [
     href: "/importers/5",
     version: "1.0.0",
   },
+];
+
+export const apiTypes: ApiType[] = [
+  { name: "REST", color: "rest" },
+  { name: "GRAPHQL", color: "blue" },
+  { name: "GRPC", color: "grpc" },
 ];
