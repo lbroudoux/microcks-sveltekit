@@ -24,13 +24,34 @@ export async function httpGet<T>(endpoint: string): Promise<T> {
 }
 
 export async function httpGetWithAuth<T>(endpoint: string): Promise<T> {
+  return fetchWithAuth(endpoint, "GET");
+}
+
+export async function httpPostWithAuth<T>(endpoint: string, body: any): Promise<T> {
+  return fetchWithAuth(endpoint, "POST", body);
+}
+
+export async function httpPutWithAuth<T>(endpoint: string, body: any): Promise<T> {
+  return fetchWithAuth(endpoint, "PUT", body);
+}
+
+export async function httpDeleteWithAuth<T>(endpoint: string, body?: any): Promise<T> {
+  return fetchWithAuth(endpoint, "DELETE", body);
+}
+
+async function fetchWithAuth<T>(endpoint: string, method: string, body?: any): Promise<T> {
   // This API call requires authentication.
   let headers: Headers = new Headers();
   AuthenticationService.instance.injectAuthHeaders(headers);
 
-  const response = await fetch(endpoint, {
-    method: "GET",
+  const requestInit: RequestInit = {
+    method: method,
     headers: headers,
-  });
+  } 
+  if (body != null && body != undefined) {
+    requestInit.body = body;
+  }
+
+  const response = await fetch(endpoint, requestInit);
   return response.json() as Promise<T>;
 }
