@@ -48,8 +48,6 @@ const config: Config = {
           DEFAULT: "hsl(var(--card) / <alpha-value>)",
           foreground: "hsl(var(--card-foreground) / <alpha-value>)",
         },
-        rest: "hsl(114, 49%, 41%)",
-        grpc: "hsl(180, 48%, 41%)",
       },
       borderRadius: {
         lg: "var(--radius)",

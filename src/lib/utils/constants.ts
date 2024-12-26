@@ -196,7 +196,7 @@ export const importers: Importer[] = [
 ];
 
 export const apiTypes: ApiType[] = [
-  { name: "REST", color: "rest" },
-  { name: "GRAPHQL", color: "blue" },
-  { name: "GRPC", color: "grpc" },
+  { name: "REST", color: "#3F9C35" },
+  { name: "GRAPHQL", color: "#E10198" },
+  { name: "GRPC", color: "#379C9C" },
 ];

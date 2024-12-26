@@ -12,6 +12,9 @@
   };
 </script>
 
-<span class={`p-2 rounded font-normal uppercase bg-rest text-white`}>
+<span
+  class={`p-2 rounded font-medium uppercase text-white`}
+  style={`background-color: ${apiType.color};`}
+>
   {apiType.name}
 </span>

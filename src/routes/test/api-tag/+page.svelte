@@ -3,3 +3,5 @@
 </script>
 
 <ApiTag type="REST" />
+<ApiTag type="GRPC" />
+<ApiTag type="GRAPHQL" />
