@@ -22,38 +22,7 @@
 
   import type { Importer } from "$lib/utils/interfaces";
 
-  const importers: Importer[] = [
-    {
-      id: "0",
-      name: "Importer 1",
-      href: "/importers/1",
-      version: "1.1.0",
-    },
-    {
-      id: "1",
-      name: "Importer 2",
-      href: "/importers/2",
-      version: "1.0.0",
-    },
-    {
-      id: "2",
-      name: "Importer 3",
-      href: "/importers/3",
-      version: "1.0.0",
-    },
-    {
-      id: "3",
-      name: "Importer 4",
-      href: "/importers/4",
-      version: "1.0.0",
-    },
-    {
-      id: "4",
-      name: "Importer 5",
-      href: "/importers/5",
-      version: "1.0.0",
-    },
-  ];
+  import { importers } from "$lib/utils/constants";
 
   const table = createTable(readable(importers), {
     page: addPagination(),

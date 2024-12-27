@@ -1,8 +1,8 @@
 <script lang="ts">
-  import Label from "$lib/components/ui/label/label.svelte";
-  import Input from "$lib/components/ui/input/input.svelte";
-  import Textarea from "$lib/components/ui/textarea/textarea.svelte";
-  import Checkbox from "$lib/components/ui/checkbox/checkbox.svelte";
+  import Label from "../label/label.svelte";
+  import Input from "../input/input.svelte";
+  import Textarea from "../textarea/textarea.svelte";
+  import Checkbox from "../checkbox/checkbox.svelte";
 
   import type { WizardStepInput } from "$lib/utils/interfaces";
 

@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import { User } from "$lib/models/user.model";
 import {
   derived,
   writable,
@@ -22,6 +21,8 @@ import {
   type Readable,
   type Writable,
 } from "svelte/store";
+
+import { User } from "$lib/models/user.model";
 
 export const authenticatedUser: Writable<User> = writable(new User());
 

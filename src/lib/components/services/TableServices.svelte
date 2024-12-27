@@ -56,7 +56,7 @@
       },
     }),
     table.column({
-      header: "Operations Count",
+      header: "Operations",
       accessor: (row) => row.operations?.length ?? 0,
       cell: (item) => {
         const count = item.value;
