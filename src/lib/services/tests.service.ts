@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { httpDeleteWithAuth, httpGetWithAuth, httpPostWithAuth, httpPutWithAuth } from "$lib/http-utils";
+import { httpGetWithAuth, httpPostWithAuth } from "$lib/http-utils";
 import type { RequestResponsePair, UnidirectionalEvent } from '../models/service.model';
 import type { TestRequest, TestResult } from "../models/test.model";
 
