@@ -8,7 +8,7 @@
     (t) => t.name.toUpperCase() === type.toUpperCase()
   ) || {
     name: "UNKNOWN",
-    color: "gray",
+    color: "gray-500",
   };
 </script>
 

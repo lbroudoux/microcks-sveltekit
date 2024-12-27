@@ -199,4 +199,8 @@ export const apiTypes: ApiType[] = [
   { name: "REST", color: "#3F9C35" },
   { name: "GRAPHQL", color: "#E10198" },
   { name: "GRPC", color: "#379C9C" },
+  { name: "SOAP", color: "#139CF4" },
+  { name: "EVENT", color: "#7C3AED" },
+  { name: "GENERIC", color: "" },
+  { name: "GENERIC_EVENT", color: "" },
 ];
