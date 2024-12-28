@@ -15,14 +15,14 @@
  */
 import type { Metadata } from "./commons.model";
 
-export interface Api {
+export type Api = {
   name: string;
   version: string;
   resource: string;
   referencePayload: string;
 }
 
-export interface Service {
+export type Service = {
   id: string;
   name: string;
   version: string;
@@ -42,7 +42,7 @@ export enum ServiceType {
   GRAPHQL = "GRAPHQL",
 }
 
-export interface Operation {
+export type Operation = {
   name: string;
   method: string;
   action: string;
@@ -56,13 +56,14 @@ export interface Operation {
   parameterConstraints: ParameterConstraint[];
 }
 
-export interface OperationMutableProperties {
+export type OperationMutableProperties = {
   dispatcher: string;
   dispatcherRules: string;
   defaultDelay: number;
   parameterConstraints: ParameterConstraint[];
 }
-export interface Binding {
+
+export type Binding = {
   type: BindingType;
   keyType: string;
   destinationType: string;
@@ -81,7 +82,8 @@ export enum BindingType {
   GOOGLEPUBSUB,
   SQS,
 }
-export interface ParameterConstraint {
+
+export type ParameterConstraint = {
   name: string;
   in: ParameterLocation;
   required: boolean;
@@ -94,7 +96,7 @@ export enum ParameterLocation {
   header,
 }
 
-export interface Contract {
+export type Contract = {
   id: string;
   name: string;
   content: string;
@@ -122,17 +124,17 @@ export enum ContractType {
   JSON_FRAGMENT,
 }
 
-export interface Header {
+export type Header = {
   name: string;
   values: string[];
 }
 
-export interface Parameter {
+export type Parameter = {
   name: string;
   value: string;
 }
 
-interface Message {
+type Message = {
   name: string;
   content: string;
   operationId: string;
@@ -158,7 +160,7 @@ export interface EventMessage extends Message {
   dispatchCriteria: string;
 }
 
-export interface Exchange {
+export type Exchange = {
   type?: string;
   eventMessage?: EventMessage;
 }
@@ -170,12 +172,12 @@ export interface RequestResponsePair extends Exchange {
   response: Response;
 }
 
-export interface ServiceView {
+export type ServiceView = {
   service: Service;
   messagesMap: { string: Exchange[] };
 }
 
-export interface GenericResource {
+export type GenericResource = {
   id: string;
   serviceId: string;
   payload: any;

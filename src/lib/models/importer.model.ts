@@ -16,7 +16,7 @@
 import type { Metadata } from './commons.model';
 import { SecretRef } from './secret.model';
 
-export interface ImportJob {
+export type ImportJob = {
   id: string;
   name: string;
   repositoryUrl: string;
@@ -34,7 +34,7 @@ export interface ImportJob {
   serviceRefs: ServiceRef[];
 }
 
-export interface ServiceRef {
+export type ServiceRef = {
   serviceId: string;
   name: string;
   version: string;

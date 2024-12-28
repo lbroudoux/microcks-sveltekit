@@ -21,7 +21,7 @@ export enum OAuth2GrantType {
   REFRESH_TOKEN
 }
 
-export interface OAuth2ClientContext {
+export type OAuth2ClientContext = {
   clientId: string;
   clientSecret: string;
   tokenUri: string;
@@ -32,14 +32,14 @@ export interface OAuth2ClientContext {
   grantType: OAuth2GrantType;
 }
 
-export interface OAuth2AuthorizedClient {
+export type OAuth2AuthorizedClient = {
   grantType: OAuth2GrantType;
   principalName: string;
   tokenUri: string;
   scopes: string;
 }
 
-export interface TestRequest {
+export type TestRequest = {
   serviceId: string;
   testEndpoint: string;
   runnerType: TestRunnerType;
@@ -47,7 +47,7 @@ export interface TestRequest {
   oAuth2Context: OAuth2ClientContext;
 }
 
-export interface TestResult {
+export type TestResult = {
   id: string;
   version: number;
   testNumber: number;
@@ -65,14 +65,14 @@ export interface TestResult {
   authorizedClient: OAuth2AuthorizedClient;
 }
 
-export interface TestCaseResult {
+export type TestCaseResult = {
   success: boolean;
   elapsedTime: number;
   operationName: string;
   testStepResults: TestStepResult[];
 }
 
-export interface TestStepResult {
+export type TestStepResult = {
   success: boolean;
   elapsedTime: number;
   requestName: string;

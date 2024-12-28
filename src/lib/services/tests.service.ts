@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import { httpGetWithAuth, httpPostWithAuth } from "$lib/http-utils";
 import type { RequestResponsePair, UnidirectionalEvent } from '../models/service.model';
 import type { TestRequest, TestResult } from "../models/test.model";
