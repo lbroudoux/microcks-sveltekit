@@ -17,13 +17,13 @@ import { httpGetWithAuth, httpPostWithAuth } from "$lib/http-utils";
 import type { RequestResponsePair, UnidirectionalEvent } from '../models/service.model';
 import type { TestRequest, TestResult } from "../models/test.model";
 
-export async function listByServiceId(serviceId: string, page: number = 1, pageSize: number = 20): Promise<TestResult[]> {
+export async function getTestResultsByServiceId(serviceId: string, page: number = 1, pageSize: number = 20): Promise<TestResult[]> {
   // Set options string.
   const options = `page=${page - 1}&size=${pageSize}`;
   return httpGetWithAuth<TestResult[]>('/api/tests/service/' + serviceId + '?' + options);
 }
 
-export async function countByServiceId(serviceId: string): Promise<any> {
+export async function countTestResultsByServiceId(serviceId: string): Promise<any> {
   return httpGetWithAuth<any>('/api/tests/service/' + serviceId + '/count');
 }
 
@@ -31,11 +31,11 @@ export async function getTestResult(resultId: string): Promise<TestResult> {
   return httpGetWithAuth<any>('/api/tests/' + resultId);
 }
 
-export async function create(testRequest: TestRequest): Promise<TestResult> {
+export async function createTestResult(testRequest: TestRequest): Promise<TestResult> {
   return httpPostWithAuth<TestResult>('/api/tests', testRequest);
 }
 
-export async function getMessages(test: TestResult, operation: string): Promise<RequestResponsePair> {
+export async function getTestResultMessages(test: TestResult, operation: string): Promise<RequestResponsePair> {
   // operation may contain / that are forbidden within encoded URI.
   // Replace them by "!" and implement same protocole on server-side.
   // Switched from _ to ! in replacement as less commonly used in URL parameters, in line with other frameworks e.g. Drupal
@@ -44,7 +44,7 @@ export async function getMessages(test: TestResult, operation: string): Promise<
   return httpGetWithAuth<RequestResponsePair>('/api/tests/' + test.id + '/messages/' + testCaseId);
 }
 
-export async function getEventMessages(test: TestResult, operation: string): Promise<UnidirectionalEvent> {
+export async function getTestResultEventMessages(test: TestResult, operation: string): Promise<UnidirectionalEvent> {
   // operation may contain / that are forbidden within encoded URI.
   // Replace them by "!" and implement same protocole on server-side.
   // Switched from _ to ! in replacement as less commonly used in URL parameters, in line with other frameworks e.g. Drupal

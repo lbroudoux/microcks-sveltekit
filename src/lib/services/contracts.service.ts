@@ -17,6 +17,6 @@ import { httpGetWithAuth } from "$lib/http-utils";
 
 import type { Contract } from "../models/service.model";
 
-export async function listByServiceId(serviceId: string): Promise<Contract[]> {
+export async function getContractsByServiceId(serviceId: string): Promise<Contract[]> {
   return httpGetWithAuth<Contract[]>('/api/resources/service/' + serviceId);
 }
