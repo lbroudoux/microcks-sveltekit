@@ -13,9 +13,8 @@
   {#await data.service}
     Loading service...
   {:then service}
-    <p>
-      Service {service.name} - {service.version} 
-    </p>
+    <h1>Service {service.name} - {service.version}</h1>
+    <small>Created {service.metadata.createdOn}, last update on {service.metadata.lastUpdate}</small>
   {:catch error}
     <p>error loading service: {error.message}</p>
   {/await}
