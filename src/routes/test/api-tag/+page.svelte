@@ -7,3 +7,5 @@
 <ApiTag type="GRAPHQL" />
 <ApiTag type="SOAP" />
 <ApiTag type="EVENT" />
+<ApiTag type="GENERIC" />
+<ApiTag type="GENERIC_EVENT" />

@@ -109,7 +109,7 @@ export const wizardConfigCreateImporters: WizardConfig = {
           name: "name",
           description:
             "The name this import job will have for later controlling it (should be unique).",
-          placeholder: "eg. My Job Name",
+          placeholder: "e.g. My Job Name",
           type: "text",
           required: true,
         },
@@ -119,7 +119,7 @@ export const wizardConfigCreateImporters: WizardConfig = {
           description:
             "The URL we'll use to scan your project (may be a Git or Subversion repository).",
           placeholder:
-            "eg. http://git.mycompany.com/repos/master/MyRepository.xml",
+            "e.g. http://git.mycompany.com/repos/master/MyRepository.xml",
           type: "text",
           required: true,
         },
@@ -133,7 +133,7 @@ export const wizardConfigCreateImporters: WizardConfig = {
     },
     {
       icon: Lock as typeof SvelteComponent,
-      title: " Authentification secret",
+      title: "Authentification secret",
       stepName: "Authentification options",
       inputs: [
         {
@@ -200,7 +200,7 @@ export const apiTypes: ApiType[] = [
   { name: "GRAPHQL", color: "#E10198" },
   { name: "GRPC", color: "#379C9C" },
   { name: "SOAP", color: "#139CF4" },
-  { name: "EVENT", color: "#7C3AED" },
-  { name: "GENERIC", color: "" },
-  { name: "GENERIC_EVENT", color: "" },
+  { name: "EVENT", color: "#ec7a08" },
+  { name: "GENERIC", color: "#9C27B0" },
+  { name: "GENERIC_EVENT", color: "#9C27B0" },
 ];

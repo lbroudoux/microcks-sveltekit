@@ -1,39 +1,15 @@
 <script lang="ts">
   import { writable, type Writable } from "svelte/store";
 
-  import WizardStep from "$lib/components/ui/wizard/WizardStep.svelte";
+  import { WizardStep } from "$lib/components/ui/wizard";
   import * as Dialog from "$lib/components/ui/dialog";
   import { Button, buttonVariants } from "$lib/components/ui/button";
 
   import type { WizardConfig, WizardFormValues } from "$lib/utils/interfaces";
 
-  export let wizard: WizardConfig = {
-    triggerValue: "Create",
-    submitValue: "Create",
-    title: "",
-    description: "",
-    steps: [
-      {
-        icon: undefined,
-        title: "",
-        stepName: "",
-        description: "",
-        inputs: [
-          {
-            label: "",
-            name: "",
-            id: "",
-            description: "",
-            placeholder: "",
-            type: "text",
-            required: false,
-          },
-        ],
-      },
-    ],
-  };
+  export let wizardConfig: WizardConfig;
 
-  const numSteps: number = wizard.steps.length;
+  const numSteps: number = wizardConfig.steps.length;
   let activeStep: Writable<number> = writable(0);
   let formValues: Writable<WizardFormValues> = writable({});
 
@@ -77,19 +53,19 @@
 
 <Dialog.Root>
   <Dialog.Trigger class={buttonVariants({ variant: "outline" })}>
-    {wizard.triggerValue}
+    {wizardConfig.triggerValue}
   </Dialog.Trigger>
   <Dialog.Content>
     <Dialog.Header class="border-b w-full py-4">
-      <Dialog.Title class="font-semibold">{wizard.title}</Dialog.Title>
-      {#if wizard.description}
-        <Dialog.Description>{wizard.description}</Dialog.Description>
+      <Dialog.Title class="font-semibold">{wizardConfig.title}</Dialog.Title>
+      {#if wizardConfig.description}
+        <Dialog.Description>{wizardConfig.description}</Dialog.Description>
       {/if}
     </Dialog.Header>
 
     <form on:submit={handleSubmit}>
       <div class="flex justify-between items-center py-8">
-        {#each wizard.steps as step, index}
+        {#each wizardConfig.steps as step, index}
           <div
             class="flex-1 flex gap-2 flex-col items-center justify-center text-center"
           >
@@ -111,7 +87,7 @@
         {/each}
       </div>
 
-      {#each wizard.steps as step, index}
+      {#each wizardConfig.steps as step, index}
         {#if index === $activeStep}
           <WizardStep {step} />
         {/if}
