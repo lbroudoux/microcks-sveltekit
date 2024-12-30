@@ -22,7 +22,7 @@ export type DailyInvocations = {
 
   hourlyCount: { string: number };
   minuteCount: { string: number };
-}
+};
 
 export type TestConformanceMetric = {
   id: string;
@@ -34,24 +34,24 @@ export type TestConformanceMetric = {
   latestTrend: Trend;
 
   latestScores: { string: number };
-}
+};
 export enum Trend {
-  DOWN = 'DOWN',
-  LOW_DOWN = 'LOW_DOWN',
-  STABLE = 'STABLE',
-  LOW_UP = 'LOW_UP',
-  UP = 'UP'
+  DOWN = "DOWN",
+  LOW_DOWN = "LOW_DOWN",
+  STABLE = "STABLE",
+  LOW_UP = "LOW_UP",
+  UP = "UP",
 }
 
 export type WeightedMetricValue = {
   name: string;
   weight: number;
   value: number;
-}
+};
 
 export type TestResultSummary = {
   id: string;
   testDate: number;
   serviceId: string;
   success: boolean;
-}
+};

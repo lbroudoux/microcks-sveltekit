@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import type { Metadata } from "./commons.model";
+import type { Metadata } from "$lib/models/commons.model";
 
 export type Api = {
   name: string;
   version: string;
   resource: string;
   referencePayload: string;
-}
+};
 
 export type Service = {
   id: string;
@@ -31,7 +31,7 @@ export type Service = {
   operations: Operation[];
   metadata: Metadata;
   sourceArtifact: string;
-}
+};
 export enum ServiceType {
   SOAP_HTTP = "SOAP_HTTP",
   REST = "REST",
@@ -54,14 +54,14 @@ export type Operation = {
   defaultDelay: number;
   resourcePaths: string[];
   parameterConstraints: ParameterConstraint[];
-}
+};
 
 export type OperationMutableProperties = {
   dispatcher: string;
   dispatcherRules: string;
   defaultDelay: number;
   parameterConstraints: ParameterConstraint[];
-}
+};
 
 export type Binding = {
   type: BindingType;
@@ -71,7 +71,7 @@ export type Binding = {
   method: string;
   qoS: string;
   persistent: boolean;
-}
+};
 export enum BindingType {
   KAFKA,
   MQTT,
@@ -89,7 +89,7 @@ export type ParameterConstraint = {
   required: boolean;
   recopy: boolean;
   mustMatchRegexp: string;
-}
+};
 export enum ParameterLocation {
   path,
   query,
@@ -104,7 +104,7 @@ export type Contract = {
   serviceId: string;
   sourceArtifact: string;
   mainArtifact: boolean;
-}
+};
 export enum ContractType {
   WSDL,
   XSD,
@@ -127,12 +127,12 @@ export enum ContractType {
 export type Header = {
   name: string;
   values: string[];
-}
+};
 
 export type Parameter = {
   name: string;
   value: string;
-}
+};
 
 type Message = {
   name: string;
@@ -141,7 +141,7 @@ type Message = {
   testCaseId: string;
   sourceArtifact: string;
   headers: Header[];
-}
+};
 export interface Request extends Message {
   id: string;
   responseId: string;
@@ -163,7 +163,7 @@ export interface EventMessage extends Message {
 export type Exchange = {
   type?: string;
   eventMessage?: EventMessage;
-}
+};
 export interface UnidirectionalEvent extends Exchange {
   eventMessage: EventMessage;
 }
@@ -175,10 +175,10 @@ export interface RequestResponsePair extends Exchange {
 export type ServiceView = {
   service: Service;
   messagesMap: { string: Exchange[] };
-}
+};
 
 export type GenericResource = {
   id: string;
   serviceId: string;
   payload: any;
-}
+};

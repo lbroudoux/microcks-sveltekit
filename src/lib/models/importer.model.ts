@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import type { Metadata } from './commons.model';
-import { SecretRef } from './secret.model';
+import type { Metadata } from "$lib/models/commons.model";
+import { SecretRef } from "$lib/models/secret.model";
 
 export type ImportJob = {
   id: string;
@@ -32,10 +32,10 @@ export type ImportJob = {
   metadata: Metadata;
   secretRef: SecretRef;
   serviceRefs: ServiceRef[];
-}
+};
 
 export type ServiceRef = {
   serviceId: string;
   name: string;
   version: string;
-}
+};

@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { SecretRef } from './secret.model';
+import { SecretRef } from "$lib/models/secret.model";
 
 export enum OAuth2GrantType {
   PASSWORD,
   CLIENT_CREDENTIALS,
-  REFRESH_TOKEN
+  REFRESH_TOKEN,
 }
 
 export type OAuth2ClientContext = {
@@ -30,14 +30,14 @@ export type OAuth2ClientContext = {
   password: string;
   refreshToken: string;
   grantType: OAuth2GrantType;
-}
+};
 
 export type OAuth2AuthorizedClient = {
   grantType: OAuth2GrantType;
   principalName: string;
   tokenUri: string;
   scopes: string;
-}
+};
 
 export type TestRequest = {
   serviceId: string;
@@ -45,7 +45,7 @@ export type TestRequest = {
   runnerType: TestRunnerType;
   operationsHeaders: any;
   oAuth2Context: OAuth2ClientContext;
-}
+};
 
 export type TestResult = {
   id: string;
@@ -63,14 +63,14 @@ export type TestResult = {
   testCaseResults: TestCaseResult[];
   secretRef: SecretRef;
   authorizedClient: OAuth2AuthorizedClient;
-}
+};
 
 export type TestCaseResult = {
   success: boolean;
   elapsedTime: number;
   operationName: string;
   testStepResults: TestStepResult[];
-}
+};
 
 export type TestStepResult = {
   success: boolean;
@@ -78,7 +78,7 @@ export type TestStepResult = {
   requestName: string;
   eventMessageName: string;
   message: string;
-}
+};
 
 export enum TestRunnerType {
   HTTP,
@@ -88,5 +88,5 @@ export enum TestRunnerType {
   OPEN_API_SCHEMA,
   ASYNC_API_SCHEMA,
   GRPC_PROTOBUF,
-  GRAPHQL_SCHEMA
+  GRAPHQL_SCHEMA,
 }
