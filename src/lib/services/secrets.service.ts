@@ -13,33 +13,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { httpDeleteWithAuth, httpGetWithAuth, httpPostWithAuth, httpPutWithAuth } from "$lib/http-utils";
-import type { Secret } from "../models/secret.model";
+import {
+  httpDeleteWithAuth,
+  httpGetWithAuth,
+  httpPostWithAuth,
+  httpPutWithAuth,
+} from "$lib/http-utils";
+import type { Secret } from "$lib/models/secret.model";
 
-export async function getSecrets(page: number = 1, pageSize: number = 20): Promise<Secret[]> {
+export async function getSecrets(
+  page: number = 1,
+  pageSize: number = 20
+): Promise<Secret[]> {
   // Set options string.
-  const options = `page=${page - 1}&size=${pageSize}`;
-  return httpGetWithAuth<Secret[]>('/api/secrets?' + options);
+  const options: string = `page=${page - 1}&size=${pageSize}`;
+  return httpGetWithAuth<Secret[]>("/api/secrets?" + options);
 }
 
 export async function filterSecrets(filter: string): Promise<Secret[]> {
   // Set options string.
-  const options = `name=${filter}`;
-  return httpGetWithAuth<Secret[]>('/api/secrets?' + options);
+  const options: string = `name=${filter}`;
+  return httpGetWithAuth<Secret[]>("/api/secrets?" + options);
 }
 
 export async function countSecrets(): Promise<any> {
-  return httpGetWithAuth<any>('/api/secrets/count');
+  return httpGetWithAuth<any>("/api/secrets/count");
 }
 
 export async function createSecret(secret: Secret): Promise<Secret> {
-  return httpPostWithAuth<Secret>('/api/secrets', secret);
+  return httpPostWithAuth<Secret>("/api/secrets", secret);
 }
 
 export async function updateSecret(secret: Secret): Promise<Secret> {
-  return httpPutWithAuth<Secret>('/api/secrets/' + secret.id, secret);
+  return httpPutWithAuth<Secret>("/api/secrets/" + secret.id, secret);
 }
 
 export async function deleteSecret(secret: Secret): Promise<Secret> {
-  return httpDeleteWithAuth<Secret>('/api/secrets/' + secret.id);
+  return httpDeleteWithAuth<Secret>("/api/secrets/" + secret.id);
 }

@@ -14,60 +14,103 @@
  * limitations under the License.
  */
 import { httpGetWithAuth } from "$lib/http-utils";
-
-import type { DailyInvocations, TestConformanceMetric, TestResultSummary, WeightedMetricValue } from '../models/metric.model';
+import type {
+  DailyInvocations,
+  TestConformanceMetric,
+  TestResultSummary,
+  WeightedMetricValue,
+} from "$lib/models/metric.model";
 
 export async function getInvocationStats(day: Date): Promise<DailyInvocations> {
   if (day != null) {
     const options = `day=${formatDayDate(day)}`;
-    return httpGetWithAuth<DailyInvocations>('/api/metrics/invocations/global?' + options);
+    return httpGetWithAuth<DailyInvocations>(
+      "/api/metrics/invocations/global?" + options
+    );
   }
-  return httpGetWithAuth<DailyInvocations>('/api/metrics/invocations/global');
+  return httpGetWithAuth<DailyInvocations>("/api/metrics/invocations/global");
 }
 
-export async function getTopInvocations(day: Date): Promise<DailyInvocations[]> {
+export async function getTopInvocations(
+  day: Date
+): Promise<DailyInvocations[]> {
   if (day != null) {
     const options = `day=${formatDayDate(day)}`;
-    return httpGetWithAuth<DailyInvocations[]>('/api/metrics/invocations/top?' + options);
+    return httpGetWithAuth<DailyInvocations[]>(
+      "/api/metrics/invocations/top?" + options
+    );
   }
-  return httpGetWithAuth<DailyInvocations[]>('/api/metrics/invocations/top');
+  return httpGetWithAuth<DailyInvocations[]>("/api/metrics/invocations/top");
 }
 
-export async function getServiceInvocationStats(serviceName: string, serviceVersion: string, day: Date): Promise<DailyInvocations> {
+export async function getServiceInvocationStats(
+  serviceName: string,
+  serviceVersion: string,
+  day: Date
+): Promise<DailyInvocations> {
   if (day != null) {
     const options = `day=${formatDayDate(day)}`;
-    return httpGetWithAuth<DailyInvocations>('/api/metrics/invocations/' + serviceName + '/' + serviceVersion + '?' + options);
+    return httpGetWithAuth<DailyInvocations>(
+      "/api/metrics/invocations/" +
+        serviceName +
+        "/" +
+        serviceVersion +
+        "?" +
+        options
+    );
   }
-  return httpGetWithAuth<DailyInvocations>('/api/metrics/invocations/' + serviceName + '/' + serviceVersion);
+  return httpGetWithAuth<DailyInvocations>(
+    "/api/metrics/invocations/" + serviceName + "/" + serviceVersion
+  );
 }
 
 export async function getInvocationsStatsTrend(limit: number): Promise<any> {
   if (limit != null) {
-    const options = `limit=${limit.toString()}`;
-    return httpGetWithAuth<any>('/api/metrics/invocations/global/latest?' + options);
+    const options: string = `limit=${limit.toString()}`;
+    return httpGetWithAuth<any>(
+      "/api/metrics/invocations/global/latest?" + options
+    );
   }
-  return httpGetWithAuth<any>('/api/metrics/invocations/global/latest');
+  return httpGetWithAuth<any>("/api/metrics/invocations/global/latest");
 }
 
-export async function getServiceTestConformanceMetric(serviceId: string): Promise<TestConformanceMetric> {
-  return httpGetWithAuth<TestConformanceMetric>('/api/metrics/conformance/service/' + serviceId);
+export async function getServiceTestConformanceMetric(
+  serviceId: string
+): Promise<TestConformanceMetric> {
+  return httpGetWithAuth<TestConformanceMetric>(
+    "/api/metrics/conformance/service/" + serviceId
+  );
 }
 
-export async function getAggregatedTestConformanceMetrics(): Promise<WeightedMetricValue[]> {
-  return httpGetWithAuth<WeightedMetricValue[]>('/api/metrics/conformance/aggregate');
+export async function getAggregatedTestConformanceMetrics(): Promise<
+  WeightedMetricValue[]
+> {
+  return httpGetWithAuth<WeightedMetricValue[]>(
+    "/api/metrics/conformance/aggregate"
+  );
 }
 
-export async function getLatestTestsTrend(limit: number): Promise<TestResultSummary[]> {
+export async function getLatestTestsTrend(
+  limit: number
+): Promise<TestResultSummary[]> {
   if (limit != null) {
-    const options = `limit=${limit.toString()}`;
-    return httpGetWithAuth<TestResultSummary[]>('/api/metrics/tests/latest?' + options);
+    const options: string = `limit=${limit.toString()}`;
+    return httpGetWithAuth<TestResultSummary[]>(
+      "/api/metrics/tests/latest?" + options
+    );
   }
-  return httpGetWithAuth<TestResultSummary[]>('/api/metrics/tests/latest');
+  return httpGetWithAuth<TestResultSummary[]>("/api/metrics/tests/latest");
 }
 
 function formatDayDate(day: Date): string {
-  let result = day.getFullYear().toString();
-  result += day.getMonth() < 9 ? '0' + (day.getMonth() + 1).toString() : (day.getMonth() + 1).toString();
-  result += day.getDate() < 10 ? '0' + day.getDate().toString() : day.getDate().toString();
+  let result: string = day.getFullYear().toString();
+  result +=
+    day.getMonth() < 9
+      ? "0" + (day.getMonth() + 1).toString()
+      : (day.getMonth() + 1).toString();
+  result +=
+    day.getDate() < 10
+      ? "0" + day.getDate().toString()
+      : day.getDate().toString();
   return result;
 }

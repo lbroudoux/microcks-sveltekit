@@ -16,5 +16,5 @@
 import { httpGet } from "$lib/http-utils";
 
 export async function getVersionInfo(): Promise<any> {
-  return httpGet<any>('/api/version/info');
+  return httpGet<any>("/api/version/info");
 }

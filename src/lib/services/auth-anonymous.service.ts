@@ -13,17 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { IAuthenticationService } from './auth.service';
-
-import { User } from '../models/user.model';
-import { ConfigService } from './config.service';
+import { User } from "$lib/models/user.model";
+import { ConfigService } from "$lib/services/config.service";
+import { IAuthenticationService } from "$lib/services/auth.service";
 
 /**
  * A version of the authentication service that uses keycloak.js to provide
  * authentication services.
  */
 export class AnonymousAuthenticationService extends IAuthenticationService {
-
   private user: User;
 
   /**
@@ -32,10 +30,10 @@ export class AnonymousAuthenticationService extends IAuthenticationService {
   constructor(private config: ConfigService) {
     super();
     this.user = new User();
-    this.user.login = 'admin';
-    this.user.username = 'Anonymous Admin';
-    this.user.name = 'Anonymous Admin';
-    this.user.email = 'anonymous.admin@microcks.io';
+    this.user.login = "admin";
+    this.user.username = "Anonymous Admin";
+    this.user.name = "Anonymous Admin";
+    this.user.email = "anonymous.admin@microcks.io";
   }
 
   /**
@@ -44,7 +42,7 @@ export class AnonymousAuthenticationService extends IAuthenticationService {
   public isAuthenticated(): boolean {
     return true;
   }
-  
+
   /**
    * Immediately gets the current authenticated user (if any).  Returns null if no user is
    * currently authenticated.
@@ -57,7 +55,7 @@ export class AnonymousAuthenticationService extends IAuthenticationService {
    * Not supported.
    */
   public login(user: string, credential: any): Promise<User> {
-    throw new Error('Not supported.');
+    throw new Error("Not supported.");
   }
 
   /**
@@ -85,7 +83,7 @@ export class AnonymousAuthenticationService extends IAuthenticationService {
    * Logout.
    */
   public logout(): void {
-    // Nothing to to here.
+    // Nothing to do here.
   }
 
   /**
@@ -99,27 +97,27 @@ export class AnonymousAuthenticationService extends IAuthenticationService {
    * Called to return the keycloak access token.
    */
   public getAuthenticationSecret(): string {
-    return 'admin';
+    return "admin";
   }
 
   /**
    * Return the Keycloak realm name.
    */
   public getRealmName(): string {
-    return 'microcks';
+    return "microcks";
   }
 
   /**
    * Return the Keycloak realm url.
    */
   public getRealmUrl(): string {
-    throw new Error('Not supported.');
+    throw new Error("Not supported.");
   }
 
   /**
    * Return the Keycloak administration realm url.
    */
   public getAdminRealmUrl(): string {
-    throw new Error('Not supported.');
+    throw new Error("Not supported.");
   }
 }

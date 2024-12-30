@@ -13,55 +13,66 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { httpDeleteWithAuth, httpGetWithAuth, httpPostWithAuth, httpPutWithAuth } from "$lib/http-utils";
-import type { ImportJob } from "../models/importer.model";
+import {
+  httpDeleteWithAuth,
+  httpGetWithAuth,
+  httpPostWithAuth,
+  httpPutWithAuth,
+} from "$lib/http-utils";
+import type { ImportJob } from "$lib/models/importer.model";
 
-export async function getImportJobs(page: number = 1, pageSize: number = 20): Promise < ImportJob[] > {
+export async function getImportJobs(
+  page: number = 1,
+  pageSize: number = 20
+): Promise<ImportJob[]> {
   // Set options string.
-  const options = `page=${page - 1}&size=${pageSize}`;
+  const options: string = `page=${page - 1}&size=${pageSize}`;
 
-  return httpGetWithAuth<ImportJob[]>('/api/jobs?' + options);
+  return httpGetWithAuth<ImportJob[]>("/api/jobs?" + options);
 }
 
-export async function filterImportJobs(labelsFilter: Map<string, string>, nameFilter: string): Promise < ImportJob[] > {
+export async function filterImportJobs(
+  labelsFilter: Map<string, string>,
+  nameFilter: string
+): Promise<ImportJob[]> {
   let httpParams = new URLSearchParams();
   if (nameFilter != null) {
-    httpParams.set('name', nameFilter);
+    httpParams.set("name", nameFilter);
   }
   if (labelsFilter != null) {
     for (const key of Array.from(labelsFilter.keys())) {
-      httpParams.set('labels.' + key, labelsFilter.get(key) as string);
+      httpParams.set("labels." + key, labelsFilter.get(key) as string);
     }
   }
 
   const options = { params: httpParams };
-  return httpGetWithAuth<ImportJob[]>('/api/jobs/search?' + httpParams);
+  return httpGetWithAuth<ImportJob[]>("/api/jobs/search?" + httpParams);
 }
 
-export async function countImportJobs(): Promise < any > {
-  return httpGetWithAuth<any>('/api/jobs/count');
+export async function countImportJobs(): Promise<any> {
+  return httpGetWithAuth<any>("/api/jobs/count");
 }
 
-export async function createImportJob(job: ImportJob): Promise<ImportJob > {
-  return httpPostWithAuth<ImportJob>('/api/jobs', job);
+export async function createImportJob(job: ImportJob): Promise<ImportJob> {
+  return httpPostWithAuth<ImportJob>("/api/jobs", job);
 }
 
 export async function updateImportJob(job: ImportJob): Promise<ImportJob> {
-  return httpPostWithAuth<ImportJob>('/api/jobs/' + job.id, job);
+  return httpPostWithAuth<ImportJob>("/api/jobs/" + job.id, job);
 }
 
 export async function deleteImportJob(job: ImportJob): Promise<ImportJob> {
-  return httpDeleteWithAuth<ImportJob>('/api/jobs/' + job.id);
+  return httpDeleteWithAuth<ImportJob>("/api/jobs/" + job.id);
 }
 
 export async function activateImportJob(job: ImportJob): Promise<ImportJob> {
-  return httpPutWithAuth<ImportJob>('/api/jobs/' + job.id + '/activate', job);
+  return httpPutWithAuth<ImportJob>("/api/jobs/" + job.id + "/activate", job);
 }
 
 export async function startImportJob(job: ImportJob): Promise<ImportJob> {
-  return httpPutWithAuth<ImportJob>('/api/jobs/' + job.id + '/start', job);
+  return httpPutWithAuth<ImportJob>("/api/jobs/" + job.id + "/start", job);
 }
 
 export async function stopImportJob(job: ImportJob): Promise<ImportJob> {
-  return httpPutWithAuth<ImportJob>('/api/jobs/' + job.id + '/stop', job);
+  return httpPutWithAuth<ImportJob>("/api/jobs/" + job.id + "/stop", job);
 }

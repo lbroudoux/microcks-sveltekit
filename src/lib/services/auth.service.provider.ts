@@ -13,28 +13,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { IAuthenticationService } from './auth.service';
+import { error } from "@sveltejs/kit";
 
-import { ConfigService } from './config.service';
-import { KeycloakAuthenticationService } from './auth-keycloak.service';
-import { AnonymousAuthenticationService } from './auth-anonymous.service';
-import { error } from '@sveltejs/kit';
+import { IAuthenticationService } from "$lib/services/auth.service";
+import { ConfigService } from "$lib/services/config.service";
+import { KeycloakAuthenticationService } from "$lib/services/auth-keycloak.service";
+import { AnonymousAuthenticationService } from "$lib/services/auth-anonymous.service";
 
 /**
  * A factory for retrieving the correct IAuthenticiationService implementation depending on the Configuration.
  */
-export function AuthenticationServiceFactory(config: ConfigService): IAuthenticationService {
-  console.info('[AuthenticationServiceFactory] Creating AuthenticationService...');
-  
-  if (config.authType() === 'keycloakjs') {
-    console.info('[AuthenticationServiceFactory] Creating keycloak.js auth service.');
-    return new KeycloakAuthenticationService(config);
-  } else if (config.authType() === 'anonymous') {
-    console.info('[AuthenticationServiceFactory] Creating Anonymous auth service.');
-    return new AnonymousAuthenticationService(config);
-  } 
+export function AuthenticationServiceFactory(
+  config: ConfigService
+): IAuthenticationService {
+  console.info(
+    "[AuthenticationServiceFactory] Creating AuthenticationService..."
+  );
 
-  console.error('[AuthenticationServiceFactory] Unsupported auth type: %s', config.authType());
+  if (config.authType() === "keycloakjs") {
+    console.info(
+      "[AuthenticationServiceFactory] Creating keycloak.js auth service."
+    );
+    return new KeycloakAuthenticationService(config);
+  } else if (config.authType() === "anonymous") {
+    console.info(
+      "[AuthenticationServiceFactory] Creating Anonymous auth service."
+    );
+    return new AnonymousAuthenticationService(config);
+  }
+
+  console.error(
+    "[AuthenticationServiceFactory] Unsupported auth type: %s",
+    config.authType()
+  );
   throw error;
 }
 
@@ -45,8 +56,7 @@ export class AuthenticationService {
    * The Singleton's constructor should always be private to prevent direct
    * construction calls with the `new` operator.
    */
-  private constructor() {
-  }
+  private constructor() {}
 
   /**
    * The static getter that controls access to the singleton instance.

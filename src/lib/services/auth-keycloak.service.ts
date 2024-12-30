@@ -13,17 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { IAuthenticationService } from './auth.service';
-
-import { User } from '../models/user.model';
-import { ConfigService } from './config.service';
+import { User } from "$lib/models/user.model";
+import { ConfigService } from "$lib/services/config.service";
+import { IAuthenticationService } from "$lib/services/auth.service";
 
 /**
  * A version of the authentication service that uses keycloak.js to provide
  * authentication services.
  */
 export class KeycloakAuthenticationService extends IAuthenticationService {
-
   private keycloak: any;
   private authenticatedUser: User;
   private authenticated: boolean = false;
@@ -57,7 +55,7 @@ export class KeycloakAuthenticationService extends IAuthenticationService {
   public isAuthenticated(): boolean {
     return this.authenticated;
   }
-  
+
   /**
    * Immediately gets the current authenticated user (if any).  Returns null if no user is
    * currently authenticated.
@@ -70,7 +68,7 @@ export class KeycloakAuthenticationService extends IAuthenticationService {
    * Not supported.
    */
   public login(user: string, credential: any): Promise<User> {
-    throw new Error('Not supported.');
+    throw new Error("Not supported.");
   }
 
   /**
@@ -84,7 +82,10 @@ export class KeycloakAuthenticationService extends IAuthenticationService {
     if (!this.keycloak.resourceAccess) {
       return false;
     }
-    const access = this.keycloak.resourceAccess['microcks-app' || this.keycloak.clientId];
+
+    const access =
+      this.keycloak.resourceAccess["microcks-app" || this.keycloak.clientId];
+
     return !!access && access.roles.indexOf(role) >= 0;
 
     // Don't know why but this fail as the code above is just copy-pasted from implementations...
@@ -95,18 +96,22 @@ export class KeycloakAuthenticationService extends IAuthenticationService {
    * Called to check that user can endorse role for at least one resource.
    */
   public hasRoleForAnyResource(role: string): boolean {
-    const rolePathPrefix = '/microcks/' + role + '/';
-    const groups = this.keycloak.tokenParsed['microcks-groups'];
+    const rolePathPrefix: string = "/microcks/" + role + "/";
+    const groups: string[] = this.keycloak.tokenParsed["microcks-groups"];
 
-    return !!groups && groups.filter((element: string) => element.startsWith(rolePathPrefix)).length > 0;
+    return (
+      !!groups &&
+      groups.filter((element: string) => element.startsWith(rolePathPrefix))
+        .length > 0
+    );
   }
 
   /**
    * Called to check that user can endorse role for a specific resource.
    */
   public hasRoleForResource(role: string, resource: string): boolean {
-    const rolePath = '/microcks/' + role + '/' + resource;
-    const groups = this.keycloak.tokenParsed['microcks-groups'];
+    const rolePath: string = "/microcks/" + role + "/" + resource;
+    const groups: string[] = this.keycloak.tokenParsed["microcks-groups"];
 
     return !!groups && groups.indexOf(rolePath) >= 0;
   }
@@ -122,7 +127,7 @@ export class KeycloakAuthenticationService extends IAuthenticationService {
    * Called to inject authentication headers into a remote API call.
    */
   public injectAuthHeaders(headers: Headers): void {
-    headers.set('Authorization', 'Bearer ' + this.keycloak.token);
+    headers.set("Authorization", "Bearer " + this.keycloak.token);
   }
 
   /**
@@ -144,19 +149,19 @@ export class KeycloakAuthenticationService extends IAuthenticationService {
    */
   public getRealmUrl(): string {
     const realmUrl = this.keycloak.createLogoutUrl();
-    return realmUrl.slice(0, realmUrl.indexOf('/protocol/'));
+    return realmUrl.slice(0, realmUrl.indexOf("/protocol/"));
   }
 
   /**
    * Return the Keycloak administration realm url.
    */
   public getAdminRealmUrl(): string {
-    const realmUrl = this.getRealmUrl();
-    if (realmUrl.indexOf('/auth/') != -1) {
+    const realmUrl: string = this.getRealmUrl();
+    if (realmUrl.indexOf("/auth/") != -1) {
       // Pre-Keycloak-X url scheme.
-      return realmUrl.replace('/auth/', '/auth/admin/');
+      return realmUrl.replace("/auth/", "/auth/admin/");
     }
     // Keycloak-X url scheme.
-    return realmUrl.replace('/realms/', '/admin/realms/');
+    return realmUrl.replace("/realms/", "/admin/realms/");
   }
 }

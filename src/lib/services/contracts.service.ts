@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 import { httpGetWithAuth } from "$lib/http-utils";
+import type { Contract } from "$lib/models/service.model";
 
-import type { Contract } from "../models/service.model";
-
-export async function getContractsByServiceId(serviceId: string): Promise<Contract[]> {
-  return httpGetWithAuth<Contract[]>('/api/resources/service/' + serviceId);
+export async function getContractsByServiceId(
+  serviceId: string
+): Promise<Contract[]> {
+  return httpGetWithAuth<Contract[]>("/api/resources/service/" + serviceId);
 }

@@ -21,12 +21,10 @@ const DEFAULT_CONFIG: any = {
     type: "keycloakjs",
   },
 };
-
-const ANONYMOUS_AUTH_TYPE = "anonymous";
+const ANONYMOUS_AUTH_TYPE: string = "anonymous";
 
 export class ConfigService {
   private static _instance: ConfigService;
-
   private config: any;
 
   /**

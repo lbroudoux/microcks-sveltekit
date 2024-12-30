@@ -14,41 +14,66 @@
  * limitations under the License.
  */
 import { httpGetWithAuth, httpPostWithAuth } from "$lib/http-utils";
-import type { RequestResponsePair, UnidirectionalEvent } from '../models/service.model';
-import type { TestRequest, TestResult } from "../models/test.model";
+import type {
+  RequestResponsePair,
+  UnidirectionalEvent,
+} from "$lib/models/service.model";
+import type { TestRequest, TestResult } from "$lib/models/test.model";
 
-export async function getTestResultsByServiceId(serviceId: string, page: number = 1, pageSize: number = 20): Promise<TestResult[]> {
+export async function getTestResultsByServiceId(
+  serviceId: string,
+  page: number = 1,
+  pageSize: number = 20
+): Promise<TestResult[]> {
   // Set options string.
-  const options = `page=${page - 1}&size=${pageSize}`;
-  return httpGetWithAuth<TestResult[]>('/api/tests/service/' + serviceId + '?' + options);
+  const options: string = `page=${page - 1}&size=${pageSize}`;
+  return httpGetWithAuth<TestResult[]>(
+    "/api/tests/service/" + serviceId + "?" + options
+  );
 }
 
-export async function countTestResultsByServiceId(serviceId: string): Promise<any> {
-  return httpGetWithAuth<any>('/api/tests/service/' + serviceId + '/count');
+export async function countTestResultsByServiceId(
+  serviceId: string
+): Promise<any> {
+  return httpGetWithAuth<any>("/api/tests/service/" + serviceId + "/count");
 }
 
 export async function getTestResult(resultId: string): Promise<TestResult> {
-  return httpGetWithAuth<any>('/api/tests/' + resultId);
+  return httpGetWithAuth<any>("/api/tests/" + resultId);
 }
 
-export async function createTestResult(testRequest: TestRequest): Promise<TestResult> {
-  return httpPostWithAuth<TestResult>('/api/tests', testRequest);
+export async function createTestResult(
+  testRequest: TestRequest
+): Promise<TestResult> {
+  return httpPostWithAuth<TestResult>("/api/tests", testRequest);
 }
 
-export async function getTestResultMessages(test: TestResult, operation: string): Promise<RequestResponsePair> {
+export async function getTestResultMessages(
+  test: TestResult,
+  operation: string
+): Promise<RequestResponsePair> {
   // operation may contain / that are forbidden within encoded URI.
   // Replace them by "!" and implement same protocole on server-side.
   // Switched from _ to ! in replacement as less commonly used in URL parameters, in line with other frameworks e.g. Drupal
-  operation = operation.replace(/\//g, '!');
-  const testCaseId = test.id + '-' + test.testNumber + '-' + encodeURIComponent(operation);
-  return httpGetWithAuth<RequestResponsePair>('/api/tests/' + test.id + '/messages/' + testCaseId);
+  operation = operation.replace(/\//g, "!");
+  const testCaseId =
+    test.id + "-" + test.testNumber + "-" + encodeURIComponent(operation);
+  return httpGetWithAuth<RequestResponsePair>(
+    "/api/tests/" + test.id + "/messages/" + testCaseId
+  );
 }
 
-export async function getTestResultEventMessages(test: TestResult, operation: string): Promise<UnidirectionalEvent> {
+export async function getTestResultEventMessages(
+  test: TestResult,
+  operation: string
+): Promise<UnidirectionalEvent> {
   // operation may contain / that are forbidden within encoded URI.
   // Replace them by "!" and implement same protocole on server-side.
   // Switched from _ to ! in replacement as less commonly used in URL parameters, in line with other frameworks e.g. Drupal
-  operation = operation.replace(/\//g, '!');
-  const testCaseId = test.id + '-' + test.testNumber + '-' + encodeURIComponent(operation);
-  return httpGetWithAuth<UnidirectionalEvent>('/api/tests/' + test.id + '/events/' + testCaseId);
+  operation = operation.replace(/\//g, "!");
+  const testCaseId =
+    test.id + "-" + test.testNumber + "-" + encodeURIComponent(operation);
+  return httpGetWithAuth<UnidirectionalEvent>(
+    "/api/tests/" + test.id + "/events/" + testCaseId
+  );
 }
