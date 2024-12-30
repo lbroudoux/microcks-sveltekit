@@ -10,10 +10,10 @@
 </script>
 
 {#if input.type === "text" || input.type === "textarea"}
-  <div class="w-full flex flex-col items-center justify-center gap-2 py-2">
+  <div class="w-full flex flex-col items-start justify-center gap-2 py-2">
     <Label
       for={input.id || input.name}
-      class="text-left w-full inline-flex gap-1"
+      class="text-left w-full inline-flex gap-1 text-md"
     >
       {#if input.required}
         <span class="text-red-600 text-md">*</span>{/if}
@@ -41,7 +41,7 @@
   </div>
 {:else if input.type === "checkbox"}
   {#if input.description}
-    <p class="text-sm">{input.description}</p>
+    <p class="text-md">{input.description}</p>
   {/if}
   <div class="w-full flex flex-row items-center justify-start gap-2">
     <Checkbox id={input.id || input.name} name={input.name} />
