@@ -8,7 +8,7 @@
   import { readable } from "svelte/store";
   import { addPagination, addTableFilter } from "svelte-headless-table/plugins";
 
-  import ActionsTableServices from "$lib/components/services/ActionTableServices.svelte";
+  import ActionsTableServices from "../services/ActionTableServices.svelte";
   import {
     Root,
     Header,
