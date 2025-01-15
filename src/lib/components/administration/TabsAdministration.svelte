@@ -29,13 +29,17 @@
         "Upload and import a previously exported JSON repository snapshot.",
     }}
   >
-    <Button slot="tabAction" variant={"outline"}>
-      <Plus size={16} />
-      Import
-    </Button>
-    <div slot="tabContent" class="w-full">
-      <Dropzone />
-    </div>
+    {#snippet tabAction()}
+        <Button  variant={"outline"}>
+        <Plus size={16} />
+        Import
+      </Button>
+      {/snippet}
+    {#snippet tabContent()}
+        <div  class="w-full">
+        <Dropzone />
+      </div>
+      {/snippet}
   </TabContentAdministration>
   <TabContentAdministration
     tab={{

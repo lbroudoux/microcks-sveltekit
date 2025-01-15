@@ -6,7 +6,11 @@
 
   import type { WizardStepInput } from "$lib/utils/interfaces";
 
-  export let input: WizardStepInput;
+  interface Props {
+    input: WizardStepInput;
+  }
+
+  let { input }: Props = $props();
 </script>
 
 {#if input.type === "text" || input.type === "textarea"}

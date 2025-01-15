@@ -10,5 +10,7 @@
 </script>
 
 <SectionHeading {sectionHeading}>
-  <Button slot="headingActions" variant="default">Create Job</Button>
+  {#snippet headingActions()}
+    <Button  variant="default">Create Job</Button>
+  {/snippet}
 </SectionHeading>

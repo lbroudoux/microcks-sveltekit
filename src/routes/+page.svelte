@@ -5,9 +5,13 @@
   import PageLayout from "$lib/components/layouts/PageLayout.svelte";
   import * as Card from "$lib/components/ui/card/index.js";
 
-  export let data: PageData;
+  interface Props {
+    data: PageData;
+  }
 
-  let servicesCount: number;
+  let { data }: Props = $props();
+
+  let servicesCount: number = $state();
   let repositoryDonutChartData: any = [
     ['REST', 0],
     ['DIRECT', 0],

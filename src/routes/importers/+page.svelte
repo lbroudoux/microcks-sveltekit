@@ -16,19 +16,18 @@
 
 <PageLayout>
   <SectionHeading sectionHeading={shImporters}>
-    <div
-      slot="headingActions"
-      class="w-full flex flex-row gap-2 items-center justify-end"
-    >
-      <Button variant={"outline"}>
-        <Upload size={16} />
-        Upload
-      </Button>
-      <Button>
-        <Plus size={16} />
-        Create
-      </Button>
-    </div>
+    {#snippet headingActions()}
+      <div class="w-full flex flex-row gap-2 items-center justify-end">
+        <Button variant={"outline"}>
+          <Upload size={16} />
+          Upload
+        </Button>
+        <Button>
+          <Plus size={16} />
+          Create
+        </Button>
+      </div>
+    {/snippet}
   </SectionHeading>
-  <TableImporters />
+  <!-- <TableImporters /> -->
 </PageLayout>

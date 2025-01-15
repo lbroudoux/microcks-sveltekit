@@ -3,7 +3,13 @@
 
   import type { TabContentAdministration } from "$lib/utils/interfaces";
 
-  export let tab: TabContentAdministration;
+  interface Props {
+    tab: TabContentAdministration;
+    tabAction?: import('svelte').Snippet;
+    tabContent?: import('svelte').Snippet;
+  }
+
+  let { tab, tabAction, tabContent }: Props = $props();
 </script>
 
 <Content value={tab.value} class="p-4 space-y-1">
@@ -12,7 +18,7 @@
       <h3 class="text-xl">{tab.title}</h3>
       <p class="text-muted-foreground text-sm">{tab.description}</p>
     </div>
-    <slot name="tabAction" />
+    {@render tabAction?.()}
   </div>
-  <slot name="tabContent" />
+  {@render tabContent?.()}
 </Content>

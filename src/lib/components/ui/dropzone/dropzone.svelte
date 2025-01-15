@@ -1,7 +1,11 @@
 <script lang="ts">
   import Files from "lucide-svelte/icons/files";
 
-  export let fileLoaded: any = null;
+  interface Props {
+    fileLoaded?: any;
+  }
+
+  let { fileLoaded = $bindable(null) }: Props = $props();
 
   function loadFile() {
     const input = document.createElement("input");
@@ -28,7 +32,7 @@
 
 <button
   class="w-1/3 text-muted-foreground hover:text-foreground p-8 border-dashed rounded border-muted-foreground/25 border-2 hover:border-muted-foreground/50 bg-muted flex flex-col items-center justify-center gap-2 my-4 hover:cursor-pointer transition-all"
-  on:click={loadFile}
+  onclick={loadFile}
 >
   <Files />
   <span class="text-md">Drag Files to Upload or Click Here</span>

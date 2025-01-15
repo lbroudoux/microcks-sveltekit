@@ -3,13 +3,17 @@
 
   import type { WizardStep } from "$lib/utils/interfaces";
 
-  export let step: WizardStep;
+  interface Props {
+    step: WizardStep;
+  }
+
+  let { step }: Props = $props();
 </script>
 
 <div class="flex flex-col items-start justify-start gap-4 py-4">
   <div class="inline-flex items-center gap-2 font-medium text-lg">
     {#if step.icon}
-      <svelte:component this={step.icon} class="w-5 h-5" />
+      <step.icon class="w-5 h-5" />
     {/if}
     <p>{step.title}</p>
   </div>

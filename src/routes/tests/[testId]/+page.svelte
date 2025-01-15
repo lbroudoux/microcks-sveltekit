@@ -4,7 +4,11 @@
 
   import PageLayout from "$lib/components/layouts/PageLayout.svelte";
   
-  export let data: PageData;
+  interface Props {
+    data: PageData;
+  }
+
+  let { data }: Props = $props();
 
   onMount(() => {
     console.log("In page /tests onMount()");

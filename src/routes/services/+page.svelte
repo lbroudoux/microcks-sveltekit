@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import type { PageData } from "./$types";
 
-  import TableServices from "$lib/components/services/TableServices.svelte";
+  //import TableServices from "$lib/components/services/TableServices.svelte";
   import PageLayout from "$lib/components/layouts/PageLayout.svelte";
   import SectionHeading from "$lib/components/layouts/SectionHeading.svelte";
   import Loader from "$lib/components/global/Loader.svelte";
@@ -11,7 +11,11 @@
   import { shServices } from "$lib/utils/constants";
   import type { Service } from "$lib/models/service.model";
 
-  export let data: PageData;
+  interface Props {
+    data: PageData;
+  }
+
+  let { data }: Props = $props();
 
   const services: Service[] = data.services;
 
@@ -22,12 +26,14 @@
 
 <PageLayout>
   <SectionHeading sectionHeading={shServices}>
-    <Button slot="headingActions">+ Add Direct API</Button>
+    {#snippet headingActions()}
+      <Button >+ Add Direct API</Button>
+    {/snippet}
   </SectionHeading>
   {#await data.services}
     <Loader />
   {:then services}
-    <TableServices {services} />
+    <!-- <TableServices {services} /> -->
   {:catch error}
     <p>error loading services: {error.message}</p>
   {/await}

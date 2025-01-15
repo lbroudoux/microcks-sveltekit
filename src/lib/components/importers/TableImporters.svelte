@@ -1,4 +1,5 @@
 <script lang="ts">
+  /*
   import {
     createTable,
     Render,
@@ -7,6 +8,7 @@
   } from "svelte-headless-table";
   import { readable } from "svelte/store";
   import { addPagination, addTableFilter } from "svelte-headless-table/plugins";
+  */
 
   import ActionsTableServices from "$lib/components/services/ActionTableServices.svelte";
   import {
@@ -74,11 +76,13 @@
           <Subscribe rowAttrs={headerRow.attrs()}>
             <Row>
               {#each headerRow.cells as cell (cell.id)}
-                <Subscribe attrs={cell.attrs()} let:attrs props={cell.props()}>
-                  <Head {...attrs}>
-                    <Render of={cell.render()} />
-                  </Head>
-                </Subscribe>
+                <Subscribe attrs={cell.attrs()}  props={cell.props()}>
+                  {#snippet children({ attrs })}
+                                    <Head {...attrs}>
+                      <Render of={cell.render()} />
+                    </Head>
+                                                    {/snippet}
+                                </Subscribe>
               {/each}
             </Row>
           </Subscribe>
@@ -91,17 +95,21 @@
           </Row>
         {:else}
           {#each $pageRows as row (row.id)}
-            <Subscribe rowAttrs={row.attrs()} let:rowAttrs>
-              <Row {...rowAttrs}>
-                {#each row.cells as cell (cell.id)}
-                  <Subscribe attrs={cell.attrs()} let:attrs>
-                    <Cell {...attrs}>
-                      <Render of={cell.render()} />
-                    </Cell>
-                  </Subscribe>
-                {/each}
-              </Row>
-            </Subscribe>
+            <Subscribe rowAttrs={row.attrs()} >
+              {#snippet children({ rowAttrs })}
+                            <Row {...rowAttrs}>
+                  {#each row.cells as cell (cell.id)}
+                    <Subscribe attrs={cell.attrs()} >
+                      {#snippet children({ attrs })}
+                                        <Cell {...attrs}>
+                          <Render of={cell.render()} />
+                        </Cell>
+                                                            {/snippet}
+                                    </Subscribe>
+                  {/each}
+                </Row>
+                                        {/snippet}
+                        </Subscribe>
           {/each}
         {/if}
       </Body>

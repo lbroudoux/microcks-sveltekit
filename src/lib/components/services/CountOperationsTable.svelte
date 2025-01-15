@@ -1,7 +1,11 @@
 <script lang="ts">
   import Settings from "lucide-svelte/icons/settings";
 
-  export let count: number;
+  interface Props {
+    count: number;
+  }
+
+  let { count }: Props = $props();
 </script>
 
 <div class="flex items-center flex-row gap-2">

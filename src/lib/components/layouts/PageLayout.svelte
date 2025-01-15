@@ -1,9 +1,14 @@
 <script lang="ts">
   import clsx from "clsx";
 
-  export let classes: string = "";
+  interface Props {
+    classes?: string;
+    children?: import('svelte').Snippet;
+  }
+
+  let { classes = "", children }: Props = $props();
 </script>
 
 <div class={clsx("w-full h-full", classes)}>
-  <slot />
+  {@render children?.()}
 </div>

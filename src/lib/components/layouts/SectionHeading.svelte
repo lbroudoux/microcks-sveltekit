@@ -1,7 +1,12 @@
 <script lang="ts">
   import type { SectionHeading } from "$lib/utils/interfaces";
 
-  export let sectionHeading: SectionHeading;
+  interface Props {
+    sectionHeading: SectionHeading;
+    headingActions?: import('svelte').Snippet;
+  }
+
+  let { sectionHeading, headingActions }: Props = $props();
 </script>
 
 <section class="w-full flex flex-row items-start justify-between gap-4 py-4">
@@ -13,5 +18,5 @@
       {sectionHeading.description}
     </p>
   </div>
-  <slot name="headingActions" />
+  {@render headingActions?.()}
 </section>

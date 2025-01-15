@@ -2,7 +2,11 @@
   import { apiTypes } from "$lib/utils/constants";
   import type { ApiType } from "$lib/utils/types";
 
-  export let type: string;
+  interface Props {
+    type: string;
+  }
+
+  let { type }: Props = $props();
 
   let apiType: ApiType = apiTypes.find(
     (t) => t.name.toUpperCase() === type.toUpperCase()

@@ -7,7 +7,11 @@
 
   import type { WizardConfig, WizardFormValues } from "$lib/utils/interfaces";
 
-  export let wizardConfig: WizardConfig;
+  interface Props {
+    wizardConfig: WizardConfig;
+  }
+
+  let { wizardConfig }: Props = $props();
 
   const numSteps: number = wizardConfig.steps.length;
   let activeStep: Writable<number> = writable(0);
@@ -63,7 +67,7 @@
       {/if}
     </Dialog.Header>
 
-    <form on:submit={handleSubmit}>
+    <form onsubmit={handleSubmit}>
       <div class="flex justify-between items-center py-8">
         {#each wizardConfig.steps as step, index}
           <div
@@ -78,7 +82,7 @@
             <button
               class="font-medium border rounded-full text-muted-foreground p-2 px-4 hover:cursor-pointer"
               class:active={index === $activeStep}
-              on:click={() => goToStep(index)}
+              onclick={() => goToStep(index)}
               type="button"
             >
               {index + 1}
