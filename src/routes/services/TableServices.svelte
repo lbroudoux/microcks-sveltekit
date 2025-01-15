@@ -10,7 +10,8 @@
   import { addPagination, addTableFilter } from "svelte-headless-table/plugins";
   */
 
-  import ActionsTableServices from "$lib/components/services/ActionTableServices.svelte";
+  import ActionsTableServices from "./ActionTableServices.svelte";
+  import CountOperationsTable from "./CountOperationsTable.svelte";
   import {
     Root,
     Header,
@@ -22,11 +23,16 @@
   import Button from "$lib/components/ui/button/button.svelte";
   import Input from "$lib/components/ui/input/input.svelte";
 
-  import type { Importer } from "$lib/utils/interfaces";
+  import type { Service } from "$lib/models/service.model";
+  import { getIconServiceType } from "$lib/utils/icons";
 
-  import { importers } from "$lib/utils/constants";
+  interface Props {
+    services?: Service[];
+  }
 
-  const table = createTable(readable(importers), {
+  let { services = [] }: Props = $props();
+
+  const table = createTable(readable(services), {
     page: addPagination(),
     filter: addTableFilter({
       fn: ({ filterValue, value }) =>
@@ -35,16 +41,38 @@
   });
   const columns = table.createColumns([
     table.column({
-      header: "Name",
+      header: "Type",
+      accessor: (row) => row.type,
+      cell: (item) => {
+        const Icon = getIconServiceType(item.value);
+        return createRender(Icon);
+      },
+    }),
+    table.column({
       accessor: "name",
+      header: "Name",
     }),
     table.column({
-      header: "Version",
       accessor: "version",
+      header: "Version",
+      plugins: {
+        filter: {
+          exclude: true,
+        },
+      },
     }),
     table.column({
-      header: "Link",
-      accessor: "href",
+      header: "Operations",
+      accessor: (row) => row.operations?.length ?? 0,
+      cell: (item) => {
+        const count = item.value;
+        return createRender(CountOperationsTable, { count });
+      },
+      plugins: {
+        filter: {
+          exclude: true,
+        },
+      },
     }),
     table.column({
       header: "",

@@ -10,8 +10,7 @@
   import { addPagination, addTableFilter } from "svelte-headless-table/plugins";
   */
 
-  import ActionsTableServices from "$lib/components/services/ActionTableServices.svelte";
-  import CountOperationsTable from "$lib/components/services/CountOperationsTable.svelte";
+  import ActionsTableServices from "../services/ActionTableServices.svelte";
   import {
     Root,
     Header,
@@ -23,16 +22,11 @@
   import Button from "$lib/components/ui/button/button.svelte";
   import Input from "$lib/components/ui/input/input.svelte";
 
-  import type { Service } from "$lib/models/service.model";
-  import { getIconServiceType } from "$lib/utils/icons";
+  import type { Importer } from "$lib/utils/interfaces";
 
-  interface Props {
-    services?: Service[];
-  }
+  import { importers } from "$lib/utils/constants";
 
-  let { services = [] }: Props = $props();
-
-  const table = createTable(readable(services), {
+  const table = createTable(readable(importers), {
     page: addPagination(),
     filter: addTableFilter({
       fn: ({ filterValue, value }) =>
@@ -41,38 +35,16 @@
   });
   const columns = table.createColumns([
     table.column({
-      header: "Type",
-      accessor: (row) => row.type,
-      cell: (item) => {
-        const Icon = getIconServiceType(item.value);
-        return createRender(Icon);
-      },
-    }),
-    table.column({
-      accessor: "name",
       header: "Name",
+      accessor: "name",
     }),
     table.column({
-      accessor: "version",
       header: "Version",
-      plugins: {
-        filter: {
-          exclude: true,
-        },
-      },
+      accessor: "version",
     }),
     table.column({
-      header: "Operations",
-      accessor: (row) => row.operations?.length ?? 0,
-      cell: (item) => {
-        const count = item.value;
-        return createRender(CountOperationsTable, { count });
-      },
-      plugins: {
-        filter: {
-          exclude: true,
-        },
-      },
+      header: "Link",
+      accessor: "href",
     }),
     table.column({
       header: "",

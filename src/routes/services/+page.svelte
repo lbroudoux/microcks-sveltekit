@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import type { PageData } from "./$types";
 
-  //import TableServices from "$lib/components/services/TableServices.svelte";
+  import TableServices from "./TableServices.svelte";
   import PageLayout from "$lib/components/layouts/PageLayout.svelte";
   import SectionHeading from "$lib/components/layouts/SectionHeading.svelte";
   import Loader from "$lib/components/global/Loader.svelte";

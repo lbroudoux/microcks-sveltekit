@@ -2,12 +2,12 @@
   import { onMount } from "svelte";
   import { Upload, Plus } from "lucide-svelte";
 
+  import TableImporters from "./TableImporters.svelte";
   import PageLayout from "$lib/components/layouts/PageLayout.svelte";
   import SectionHeading from "$lib/components/layouts/SectionHeading.svelte";
   import Button from "$lib/components/ui/button/button.svelte";
 
   import { shImporters } from "$lib/utils/constants";
-  import TableImporters from "$lib/components/importers/TableImporters.svelte";
 
   onMount(() => {
     console.log("In page /importers onMount()");
