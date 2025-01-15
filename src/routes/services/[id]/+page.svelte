@@ -1,4 +1,5 @@
 <script lang="ts">
+  import ApiTag from '$lib/components/ui/api-tag/api-tag.svelte';
   import type { PageData } from './$types';
   import { onMount } from 'svelte';
 
@@ -15,6 +16,12 @@
   {:then service}
     <h1>Service {service.name} - {service.version}</h1>
     <small>Created {service.metadata.createdOn}, last update on {service.metadata.lastUpdate}</small>
+
+    <h3>Properties</h3>
+    <dl>
+      <dt>Service Type:</dt>
+      <dd><ApiTag type="{service.type}"/></dd>
+    </dl>
 
     <div>
       <a href="/tests/service/{service.id}">View Tests Runs</a>
