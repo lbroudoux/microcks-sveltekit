@@ -1,8 +1,8 @@
 <script lang="ts">
   import { Plus } from "lucide-svelte";
 
-  import Dropzone from "$lib/components/ui/dropzone/Dropzone.svelte";
-  import TabContentAdministration from "$lib/components/administration/TabContentAdministration.svelte";
+  import TabContentAdministration from "./TabContentAdministration.svelte";
+  import Dropzone from "$lib/components/ui/dropzone";
   import { Root, List, Trigger } from "$lib/components/ui/tabs/index";
   import Button from "$lib/components/ui/button/button.svelte";
 </script>
