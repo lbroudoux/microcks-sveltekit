@@ -9,9 +9,9 @@
   import SectionHeading from "$lib/components/layouts/SectionHeading.svelte";
   import Loader from "$lib/components/global/Loader.svelte";
   import Button from "$lib/components/ui/button/button.svelte";
-  import * as Table from "$lib/components/ui/table/index.js";
-  import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
-  import * as Pagination from "$lib/components/ui/pagination/index.js";
+  import * as Table from "$lib/components/ui/table";
+  import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
+  import * as Pagination from "$lib/components/ui/pagination";
   import { shServices } from "$lib/utils/constants";
   import type { Service } from "$lib/models/service.model";
   import ApiTag from "$lib/components/ui/api-tag/api-tag.svelte";
@@ -70,14 +70,15 @@
           </Table.Cell>
           <Table.Cell>
             <ApiTypeBadge type="{ service.type }" />
-            | Version <b>{ service.version }</b>
-            |
-            <br />
+            <span class="text-base font-regular">
+              | v{ service.version } |
+            </span>
+            <!-- <br />
             <div style="margin-top: 10px">
               <small>Updated on { service.metadata.lastUpdate }</small>
-            </div>
+            </div> -->
           </Table.Cell>
-          <Table.Cell class="flex flex-row gap-1 items-center h-full">
+          <Table.Cell class="flex flex-row gap-1 items-center justify-center">
               <Cog />{ service.operations.length } Operations
           </Table.Cell>
           <Table.Cell class="text-right">
