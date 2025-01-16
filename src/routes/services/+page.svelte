@@ -2,23 +2,21 @@
   import { onMount } from "svelte";
   import { MediaQuery } from "svelte/reactivity";
   import type { PageData } from "./$types";
+  import { ChevronLeft, ChevronRight, Cog, Delete, Ellipsis } from "lucide-svelte";
 
   import TableServices from "./TableServices.svelte";
   import PageLayout from "$lib/components/layouts/PageLayout.svelte";
   import SectionHeading from "$lib/components/layouts/SectionHeading.svelte";
   import Loader from "$lib/components/global/Loader.svelte";
   import Button from "$lib/components/ui/button/button.svelte";
-
   import * as Table from "$lib/components/ui/table/index.js";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
   import * as Pagination from "$lib/components/ui/pagination/index.js";
-
   import { shServices } from "$lib/utils/constants";
   import type { Service } from "$lib/models/service.model";
   import ApiTag from "$lib/components/ui/api-tag/api-tag.svelte";
   import ApiTypeBadge from "$lib/components/ui/api-type-badge/api-type-badge.svelte";
   import ApiTypeIcon from "$lib/components/ui/api-type-icon/api-type-icon.svelte";
-  import { ChevronLeft, ChevronRight, Cog, Delete, Ellipsis } from "lucide-svelte";
 
   import { getServices } from "$lib/services/services.service";
 
@@ -27,12 +25,10 @@
   const services: Service[] = data.services;
   const servicesCount: Promise<number> = data.servicesCount;
   const servicesLabels: Promise<Map<string, string[]>> = data.servicesLabels;
-
   const isDesktop = new MediaQuery("(min-width: 768px)");
- 
   const count = 18;
   const perPage = $derived(isDesktop.current ? 5 : 3);
-  const siblingCount = $derived(isDesktop.current ? 2 : 1);  
+  const siblingCount = $derived(isDesktop.current ? 2 : 1);
 
   onMount(() => {
     console.log("In page /services onMount()");
@@ -52,9 +48,9 @@
 
 <PageLayout>
   <SectionHeading sectionHeading={shServices}>
-    {#snippet headingActions()}
+    <!-- {#snippet headingActions()}
       <Button >+ Add Direct API</Button>
-    {/snippet}
+    {/snippet} -->
   </SectionHeading>
   {#await data.services}
     <Loader />
@@ -62,8 +58,16 @@
     <Table.Root>
       {#each services as service}
         <Table.Row>
-          <Table.Cell><ApiTypeIcon type="{ service.type }" /></Table.Cell>
-          <Table.Cell><h4><a href="/services/{ service.id }">{ service.name }</a></h4></Table.Cell>
+          <Table.Cell>
+            <ApiTypeIcon type="{ service.type }" />
+          </Table.Cell>
+          <Table.Cell>
+            <h4>
+              <a href="/services/{ service.id }" class="font-semibold text-base">
+                { service.name }
+              </a>
+            </h4>
+          </Table.Cell>
           <Table.Cell>
             <ApiTypeBadge type="{ service.type }" />
             | Version <b>{ service.version }</b>
@@ -73,8 +77,8 @@
               <small>Updated on { service.metadata.lastUpdate }</small>
             </div>
           </Table.Cell>
-          <Table.Cell>
-            <Cog /> <strong>{ service.operations.length }</strong>  Operations
+          <Table.Cell class="flex flex-row gap-1 items-center h-full">
+              <Cog />{ service.operations.length } Operations
           </Table.Cell>
           <Table.Cell class="text-right">
             <Button variant="outline">
@@ -185,7 +189,7 @@
   {/await}
 </PageLayout>
 
-<style>
+<!-- <style>
 .serviceName {
   flex-basis: 40%;
   max-width: 300px;
@@ -294,4 +298,4 @@
     width: 50%;
   }
 }
-</style>
+</style> -->

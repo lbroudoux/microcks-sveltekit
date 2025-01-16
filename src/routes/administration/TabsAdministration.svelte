@@ -34,12 +34,12 @@
         <Plus size={16} />
         Import
       </Button>
-      {/snippet}
+    {/snippet}
     {#snippet tabContent()}
         <div  class="w-full">
         <Dropzone />
       </div>
-      {/snippet}
+    {/snippet}
   </TabContentAdministration>
   <TabContentAdministration
     tab={{
