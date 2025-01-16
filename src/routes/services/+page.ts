@@ -3,7 +3,7 @@
 export const prerender = false;
 
 import type { PageLoad } from "./$types";
-import { getServices } from "$lib/services/services.service";
+import { countServices, getServices, getServicesLabels } from "$lib/services/services.service";
 
 export const load: PageLoad = async ({ parent, fetch, params }) => {
   console.log("In /services PageLoad()");
@@ -11,7 +11,9 @@ export const load: PageLoad = async ({ parent, fetch, params }) => {
 
   console.log("In /services PageLoad(), after parent load");
   const data = {
-    services: await getServices(),
+    servicesCount: countServices(),
+    servicesLabels: getServicesLabels(),
+    services: await getServices(1, 5),
   };
 
   return data;

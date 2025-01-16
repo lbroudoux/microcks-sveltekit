@@ -14,7 +14,7 @@ import type { WizardConfig, Importer } from "$lib/utils/interfaces";
 import type { MenuSidebar, SectionHeading } from "$lib/utils/interfaces";
 import type { Service } from "$lib/models/service.model";
 import { ServiceType } from "$lib/models/service.model";
-import type { ApiType } from "$lib/utils/types";
+import type { ApiType, ApiTypeIcon } from "$lib/utils/types";
 
 export const menus: MenuSidebar[] = [
   {
@@ -204,3 +204,13 @@ export const apiTypes: ApiType[] = [
   { name: "GENERIC", color: "#9C27B0" },
   { name: "GENERIC_EVENT", color: "#9C27B0" },
 ];
+
+export const apiTypesIcons: ApiTypeIcon[] = [
+  { name: "REST", icon: "rest-icon-sm" },
+  { name: "GRAPHQL", icon: "graph-icon-sm" },
+  { name: "GRPC", icon: "grpc-icon-sm" },
+  { name: "SOAP", icon: "soap-icon-sm" },
+  { name: "EVENT", icon: "event-icon-sm" },
+  { name: "GENERIC", icon: "generic-icon-sm" },
+  { name: "GENERIC_EVENT", icon: "generic-icon-sm" },
+]
