@@ -62,7 +62,8 @@ async function fetchWithAuth<T>(
     headers: headers,
   };
   if (body != null && body != undefined) {
-    requestInit.body = body;
+    headers.set("Content-Type", "application/json");
+    requestInit.body = JSON.stringify(body);
   }
 
   const response = await fetch(endpoint, requestInit);

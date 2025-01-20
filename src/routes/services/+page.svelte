@@ -22,7 +22,8 @@
   import { getServices } from "$lib/services/services.service";
   import MediumDate from "$lib/components/ui/time";
   import { Wizard, Wizard2, WizardStep, type WizardStepConfig } from "$lib/components/ui/wizard2";
-    import DirectApiWizard from "./direct-api-wizard.svelte";
+  import DirectApiWizard from "./direct-api-wizard.svelte";
+  import LabelsList from "$lib/components/ui/labels/labels-list.svelte";
     
 
   let { data }: { data: PageData } = $props();
@@ -134,7 +135,7 @@
         </Table.Cell>
         <Table.Cell>
           <ApiTypeBadge type="{service.type}" />
-          | Version {service.version} | 
+          | Version {service.version} | <LabelsList labels={service.metadata.labels} />
           <br/> 
           Updated on <MediumDate ts={service.metadata.lastUpdate}/>
         </Table.Cell>

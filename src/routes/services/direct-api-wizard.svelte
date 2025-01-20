@@ -3,8 +3,6 @@
   import * as Card from "$lib/components/ui/card";
   import { Wizard, Wizard2, WizardStep, type WizardConfig, type WizardStepConfig } from "$lib/components/ui/wizard2";
   import { ServiceType, type Api } from "$lib/models/service.model";
-    import { Car } from "lucide-svelte";
-
 
   interface Props {
     isOpen: boolean;
