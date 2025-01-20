@@ -6,7 +6,7 @@
     ChevronLeft,
     ChevronRight,
     Cog,
-    Delete,
+    Trash,
     Ellipsis,
   } from "lucide-svelte";
 
@@ -159,9 +159,11 @@
                 <Cog /><span class="font-bold">{service.operations.length}</span
                 > Operations
               </Tooltip.Trigger>
-              <Tooltip.Content class="flex flex-col gap-2">
+              <Tooltip.Content
+                class="flex flex-col gap-2 bg-background text-foreground shadow"
+              >
                 <span class="font-smibold text-sm">Operations</span>
-                <ul class="flex flex-col gap-0.5">
+                <ul class="flex flex-col gap-0.5 text-muted-foreground">
                   {#each service.operations as operation}
                     <li>{operation.name}</li>
                   {/each}
@@ -181,7 +183,7 @@
             </DropdownMenu.Trigger>
             <DropdownMenu.Content>
               <DropdownMenu.Item>
-                <Delete class="mr-2 size-4" />
+                <Trash class="mr-2 size-4" />
                 <span>Delete</span>
               </DropdownMenu.Item>
             </DropdownMenu.Content>
