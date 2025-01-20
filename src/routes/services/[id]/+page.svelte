@@ -2,6 +2,7 @@
   import ApiTag from '$lib/components/ui/api-tag/api-tag.svelte';
   import type { PageData } from './$types';
   import { onMount } from 'svelte';
+  import { toast } from "svelte-sonner";
 
   import PageLayout from "$lib/components/layouts/PageLayout.svelte";
   import SectionHeading from "$lib/components/layouts/SectionHeading.svelte";
@@ -33,15 +34,15 @@
     updateServiceMetadata(service, service.metadata)
         .then((updatedService) => {
           service = updatedService;
+          toast.success("Labels have been updated");
         })
         .catch((error) => {
-          console.error("Error updating service metadata:", error);
+          toast.error("Labels cannot be updated (" + error.message + ")");
         }); 
   }
 </script>
 
 <PageLayout>
-  
   <h1>Service {service.name} - {service.version}</h1>
   <small>Created <TimeAgo ts={service.metadata.createdOn}/>, last update on <MediumDate ts={service.metadata.lastUpdate}/></small>
 
