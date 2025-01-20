@@ -2,9 +2,14 @@
   import { onMount } from "svelte";
   import { MediaQuery } from "svelte/reactivity";
   import type { PageData } from "./$types";
-  import { ChevronLeft, ChevronRight, Cog, Delete, Ellipsis } from "lucide-svelte";
+  import {
+    ChevronLeft,
+    ChevronRight,
+    Cog,
+    Delete,
+    Ellipsis,
+  } from "lucide-svelte";
 
-  import TableServices from "./TableServices.svelte";
   import PageLayout from "$lib/components/layouts/PageLayout.svelte";
   import SectionHeading from "$lib/components/layouts/SectionHeading.svelte";
   import Loader from "$lib/components/global/Loader.svelte";
@@ -17,26 +22,27 @@
   import type { Service } from "$lib/models/service.model";
   import ApiTag from "$lib/components/ui/api-tag/api-tag.svelte";
   import { ApiTypeBadge, ApiTypeIcon } from "$lib/components/ui/api-type";
-
   import { getServices } from "$lib/services/services.service";
   import MediumDate from "$lib/components/ui/time";
-  import { Wizard, Wizard2, WizardStep, type WizardStepConfig } from "$lib/components/ui/wizard2";
+  import {
+    Wizard,
+    Wizard2,
+    WizardStep,
+    type WizardStepConfig,
+  } from "$lib/components/ui/wizard2";
   import DirectApiWizard from "./direct-api-wizard.svelte";
   import LabelsList from "$lib/components/ui/labels/labels-list.svelte";
-    
 
   let { data }: { data: PageData } = $props();
 
   let services: Service[] = $state(data.services);
   const servicesLabels: Promise<Map<string, string[]>> = data.servicesLabels;
-
   const isDesktop = new MediaQuery("(min-width: 768px)");
   const perPage = $derived(isDesktop.current ? 5 : 3);
   const siblingCount = $derived(isDesktop.current ? 2 : 1);
 
   onMount(() => {
     console.log("In page /services onMount()");
-
     console.log("services: ", JSON.stringify(services));
   });
 
@@ -51,14 +57,14 @@
   let wizard2IsOpen: boolean = $state(false);
 
   const step1Config: WizardStepConfig = {
-    id: 'step1',
-    title: 'Direct API type',
+    id: "step1",
+    title: "Direct API type",
     nextEnabled: true,
     expandReviewDetails: true,
   };
   const step2Config: WizardStepConfig = {
-    id: 'step2',
-    title: 'API properties',
+    id: "step2",
+    title: "API properties",
     nextEnabled: true,
     expandReviewDetails: true,
   };
@@ -121,7 +127,7 @@
       stepReviews={[step1Review, step2Review]}>
   </Wizard2>
   -->
-  
+
   <Table.Root class="my-4">
     {#each services as service}
       <Table.Row>
@@ -131,21 +137,25 @@
         <Table.Cell>
           <h4>
             <a href="/services/{service.id}" class="font-semibold text-base">
-              { service.name }
+              {service.name}
             </a>
           </h4>
         </Table.Cell>
         <Table.Cell>
           <ApiTypeBadge type={service.type} />
-          | Version {service.version} | <LabelsList labels={service.metadata.labels} filter={`domain,status`}/>
-          <br/> 
-          Updated on <MediumDate ts={service.metadata.lastUpdate}/>
+          | Version {service.version} | <LabelsList
+            labels={service.metadata.labels}
+            filter={`domain,status`}
+          />
+          <br />
+          Updated on <MediumDate ts={service.metadata.lastUpdate} />
         </Table.Cell>
         <Table.Cell class="flex flex-row gap-1 items-center justify-center">
           <Tooltip.Provider>
             <Tooltip.Root delayDuration={200}>
-              <Tooltip.Trigger>
-                <Cog /><strong>{service.operations.length}</strong> Operations
+              <Tooltip.Trigger class="flex flex-row gap-1 items-center">
+                <Cog /><span class="font-bold">{service.operations.length}</span
+                > Operations
               </Tooltip.Trigger>
               <Tooltip.Content>
                 Operations
@@ -175,15 +185,19 @@
             </DropdownMenu.Content>
           </DropdownMenu.Root>
         </Table.Cell>
-      </Table.Row> 
+      </Table.Row>
     {/each}
   </Table.Root>
-
   <div class="w-full flex flex-row items-center justify-between py-4">
     {#await data.servicesCount}
       <Loader />
     {:then servicesCount}
-      <Pagination.Root count={servicesCount.counter} perPage={perPage} siblingCount={siblingCount} onPageChange={(page) => pageChange(page)}>
+      <Pagination.Root
+        count={servicesCount.counter}
+        {perPage}
+        {siblingCount}
+        onPageChange={(page) => pageChange(page)}
+      >
         {#snippet children({ pages, currentPage })}
           <Pagination.Content>
             <Pagination.Item>
