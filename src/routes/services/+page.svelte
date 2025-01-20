@@ -148,7 +148,9 @@
             filter={`domain,status`}
           />
           <br />
-          Updated on <MediumDate ts={service.metadata.lastUpdate} />
+          <span class="text-sm text-muted-foreground">
+            Updated on <MediumDate ts={service.metadata.lastUpdate} />
+          </span>
         </Table.Cell>
         <Table.Cell class="flex flex-row gap-1 items-center justify-center">
           <Tooltip.Provider>
@@ -157,9 +159,9 @@
                 <Cog /><span class="font-bold">{service.operations.length}</span
                 > Operations
               </Tooltip.Trigger>
-              <Tooltip.Content>
-                Operations
-                <ul>
+              <Tooltip.Content class="flex flex-col gap-2">
+                <span class="font-smibold text-sm">Operations</span>
+                <ul class="flex flex-col gap-0.5">
                   {#each service.operations as operation}
                     <li>{operation.name}</li>
                   {/each}
