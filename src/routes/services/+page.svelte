@@ -135,7 +135,7 @@
         </Table.Cell>
         <Table.Cell>
           <ApiTypeBadge type="{service.type}" />
-          | Version {service.version} | <LabelsList labels={service.metadata.labels} />
+          | Version {service.version} | <LabelsList labels={service.metadata.labels} filter={`domain,status`}/>
           <br/> 
           Updated on <MediumDate ts={service.metadata.lastUpdate}/>
         </Table.Cell>
