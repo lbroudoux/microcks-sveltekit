@@ -16,8 +16,7 @@
   import { shServices } from "$lib/utils/constants";
   import type { Service } from "$lib/models/service.model";
   import ApiTag from "$lib/components/ui/api-tag/api-tag.svelte";
-  import ApiTypeBadge from "$lib/components/ui/api-type-badge/api-type-badge.svelte";
-  import ApiTypeIcon from "$lib/components/ui/api-type-icon/api-type-icon.svelte";
+  import { ApiTypeBadge, ApiTypeIcon } from "$lib/components/ui/api-type";
 
   import { getServices } from "$lib/services/services.service";
   import MediumDate from "$lib/components/ui/time";
@@ -37,11 +36,14 @@
 
   onMount(() => {
     console.log("In page /services onMount()");
+
+    console.log("services: ", JSON.stringify(services));
   });
 
   function pageChange(page: number) {
     getServices(page, 5).then((newServices) => {
       services = newServices;
+      console.log("new services: ", JSON.stringify(services));
     });
   }
 
@@ -124,7 +126,7 @@
     {#each services as service}
       <Table.Row>
         <Table.Cell>
-          <ApiTypeIcon type="{service.type}" />
+          <ApiTypeIcon type={service.type} />
         </Table.Cell>
         <Table.Cell>
           <h4>
@@ -134,7 +136,7 @@
           </h4>
         </Table.Cell>
         <Table.Cell>
-          <ApiTypeBadge type="{service.type}" />
+          <ApiTypeBadge type={service.type} />
           | Version {service.version} | <LabelsList labels={service.metadata.labels} filter={`domain,status`}/>
           <br/> 
           Updated on <MediumDate ts={service.metadata.lastUpdate}/>
