@@ -15,11 +15,10 @@
   import * as Collapsible from "$lib/components/ui/collapsible";
   import { LabelsDialog, LabelsList } from '$lib/components/ui/labels';
 
-  import ApiTag from '$lib/components/ui/api-tag/api-tag.svelte';
-
   import { ServiceType, type Operation, type ServiceView } from "$lib/models/service.model";
   import { updateServiceMetadata } from '$lib/services/services.service';
   import { ConfigService } from '$lib/services/config.service';
+  import ApiTypeBadge from '$lib/components/ui/api-type/api-type-badge.svelte';
 
   interface Props {
     data: PageData;
@@ -131,7 +130,7 @@
   </div>
   <dl>
     <dt>Service Type:</dt>
-    <dd><ApiTag type="{view.service.type}"/></dd>
+    <dd><ApiTypeBadge type={view.service.type}/></dd>
   </dl>
 
   <div>
