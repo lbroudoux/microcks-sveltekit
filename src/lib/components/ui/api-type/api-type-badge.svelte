@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import type { ServiceType } from "$lib/models/service.model";
 
   type ApiType = {
@@ -13,25 +12,27 @@
     { name: "SOAP_HTTP", color: "#139CF4" },
     { name: "EVENT", color: "#ec7a08" },
     { name: "GENERIC", color: "#9C27B0" },
-    { name: "GENERIC_EVENT", color: "#9C27B0" }
-  ]
+    { name: "GENERIC_EVENT", color: "#9C27B0" },
+  ];
 
   interface Props {
     type: ServiceType;
   }
 
   let { type }: Props = $props();
-
-  
   let apiType: ApiType = $derived.by(() => {
-    return apiTypes.find(
-      (t) => type === t.name) || {
+    return (
+      apiTypes.find((t) => type === t.name) || {
         name: "UNKNOWN",
         color: "gray-500",
       }
+    );
   });
 </script>
 
-<span class={`p-2 rounded font-medium uppercase text-white`} style={`background-color: ${ apiType.color };`}>
-  { apiType.name }
+<span
+  class={`p-2 rounded font-medium uppercase text-white`}
+  style={`background-color: ${apiType.color};`}
+>
+  {apiType.name}
 </span>

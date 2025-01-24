@@ -135,7 +135,7 @@
           <ApiTypeIcon type={service.type} />
         </Table.Cell>
         <Table.Cell class="w-1/12">
-          <h4 class="w-96 truncate">
+          <h4 class="w-96 truncate text-primary">
             <a href="/services/{service.id}" class="font-semibold text-base">
               {service.name}
             </a>
