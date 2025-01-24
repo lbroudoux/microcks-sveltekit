@@ -20,7 +20,6 @@
   import * as Pagination from "$lib/components/ui/pagination";
   import { shServices } from "$lib/utils/constants";
   import type { Service } from "$lib/models/service.model";
-  import ApiTag from "$lib/components/ui/api-tag/api-tag.svelte";
   import { ApiTypeBadge, ApiTypeIcon } from "$lib/components/ui/api-type";
   import { getServices } from "$lib/services/services.service";
   import MediumDate from "$lib/components/ui/time";

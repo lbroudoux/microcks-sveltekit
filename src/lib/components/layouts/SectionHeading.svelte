@@ -3,7 +3,7 @@
 
   interface Props {
     sectionHeading: SectionHeading;
-    headingActions?: import('svelte').Snippet;
+    headingActions?: import("svelte").Snippet;
   }
 
   let { sectionHeading, headingActions }: Props = $props();

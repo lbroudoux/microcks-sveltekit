@@ -14,19 +14,8 @@
     >
       <span class="sr-only">Acme Inc</span>
     </a>
-    <!-- TOTO
     {#each menus as menu}
       <MenuSidebar {menu} />
-    {/each}
-    -->
-    {#each menus as menu}
-      <a
-        href={menu.href}
-        class="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
-      >
-        <menu.icon class="h-5 w-5" />
-        <span class="sr-only">{menu.title}</span>
-      </a>
     {/each}
   </nav>
 </aside>
