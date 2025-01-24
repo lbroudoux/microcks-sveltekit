@@ -131,33 +131,39 @@
   <Table.Root class="my-4">
     {#each services as service}
       <Table.Row>
-        <Table.Cell>
+        <Table.Cell class="w-16">
           <ApiTypeIcon type={service.type} />
         </Table.Cell>
-        <Table.Cell>
-          <h4>
+        <Table.Cell class="w-1/12">
+          <h4 class="w-96 truncate">
             <a href="/services/{service.id}" class="font-semibold text-base">
               {service.name}
             </a>
           </h4>
         </Table.Cell>
         <Table.Cell>
-          <ApiTypeBadge type={service.type} />
-          | Version {service.version} | <LabelsList
-            labels={service.metadata.labels}
-            filter={`domain,status`}
-          />
-          <br />
-          <span class="text-sm text-muted-foreground">
-            Updated on <MediumDate ts={service.metadata.lastUpdate} />
-          </span>
+          <div class="w-full h-full flex flex-col gap-2">
+            <span>
+              <ApiTypeBadge type={service.type} />
+              | Version {service.version}
+              {#if service.metadata.labels}|{/if}
+              <LabelsList
+                labels={service.metadata.labels}
+                filter={`domain,status`}
+              />
+            </span>
+            <span class="text-sm text-muted-foreground">
+              Updated on <MediumDate ts={service.metadata.lastUpdate} />
+            </span>
+          </div>
         </Table.Cell>
-        <Table.Cell class="flex flex-row gap-1 items-center justify-center">
+        <Table.Cell class="flex flex-row gap-1 items-baseline justify-end w-36">
           <Tooltip.Provider>
             <Tooltip.Root delayDuration={200}>
-              <Tooltip.Trigger class="flex flex-row gap-1 items-center">
-                <Cog /><span class="font-bold">{service.operations.length}</span
-                > Operations
+              <Tooltip.Trigger class="inline-flex items-center gap-1">
+                <Cog />
+                <span class="font-bold">{service.operations.length}</span
+                >Operations
               </Tooltip.Trigger>
               <Tooltip.Content
                 class="flex flex-col gap-2 bg-background text-foreground shadow"
@@ -172,7 +178,7 @@
             </Tooltip.Root>
           </Tooltip.Provider>
         </Table.Cell>
-        <Table.Cell class="text-right">
+        <Table.Cell class="text-right w-48">
           <Button variant="outline">
             <a href={`/services/${service.id}`}>Details</a>
           </Button>
