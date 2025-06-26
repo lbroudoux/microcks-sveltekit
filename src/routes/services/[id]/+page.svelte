@@ -1,8 +1,12 @@
 <script lang="ts">
-  
   import type { PageData } from './$types';
   import { onMount } from 'svelte';
   import { toast } from "svelte-sonner";
+
+  import Highlight, { HighlightAuto } from "svelte-highlight";
+  import json from "svelte-highlight/languages/json";
+  import xml from "svelte-highlight/languages/xml";
+  import github from "svelte-highlight/styles/github";
 
   import { ChevronRight } from 'lucide-svelte';
 
@@ -108,7 +112,14 @@
   function hasRepositoryTenancyFeatureEnabled(): boolean {
     return config.hasFeatureEnabled('repository-tenancy');
   }
+
+  const response: string = JSON.stringify(view.service, null, 2);
+  const responseXML: string = "<xml><project>foo</project></xml>";
 </script>
+
+<svelte:head>
+  {@html github}
+</svelte:head>
 
 <PageLayout>
   <h1>Service {view.service.name} - {view.service.version}</h1>
@@ -233,6 +244,14 @@
       </div>
     {/each}
   </div>
+
+  <div class="grid-cols-2">
+    <div><Highlight language={json} code={response} /></div>
+    <div><Highlight language={xml} code={responseXML} /></div>
+    <div><HighlightAuto code={response} /></div>
+    <div><HighlightAuto code={responseXML} /></div>
+  </div>
+  
 
 </PageLayout>
 
